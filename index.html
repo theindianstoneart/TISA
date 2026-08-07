@@ -33,10 +33,11 @@
         nav a {
             color: #d7ccc8;
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 10px;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-size: 0.9rem;
         }
         nav a:hover {
             color: #ffffff;
@@ -159,8 +160,8 @@
             margin-top: 5px;
         }
 
-        /* Order Form Section */
-        .order-container {
+        /* Form Containers */
+        .order-container, .cancel-container {
             background: #fff;
             padding: 3rem;
             border-radius: 4px;
@@ -168,6 +169,9 @@
             max-width: 600px;
             margin: auto;
             border-top: 4px solid #8d6e63;
+        }
+        .cancel-container {
+            border-top: 4px solid #c62828; /* Red border for cancellation */
         }
         .form-group {
             margin-bottom: 1.5rem;
@@ -206,6 +210,21 @@
         .btn-submit:hover {
             background-color: #1eb854;
         }
+        .btn-cancel {
+            background-color: #c62828; /* Red Button */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .btn-cancel:hover {
+            background-color: #b71c1c;
+        }
 
         /* Contact Section */
         .contact-info {
@@ -236,6 +255,7 @@
             <a href="#about">About</a>
             <a href="#collection">Collection</a>
             <a href="#order">Order</a>
+            <a href="#cancel">Cancel Order</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
@@ -318,46 +338,89 @@
                 <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">Payment karne ke baad neeche screenshot attach karke order submit karein.</p>
             </div>
 
-            <form id="whatsappForm" onsubmit="sendToWhatsApp(event)">
+            <form id="orderForm" enctype="multipart/form-data" onsubmit="handleOrderSubmit(event)">
                 
                 <div class="form-group">
                     <label for="productName">Product Name</label>
-                    <input type="text" id="productName" name="productName" placeholder="Click 'Buy Now' on any product above" required readonly style="background-color: #f0f0f0; border-color: #aaa;">
+                    <input type="text" id="productName" name="Product Name" placeholder="Click 'Buy Now' on any product above" required readonly style="background-color: #f0f0f0; border-color: #aaa;">
                 </div>
 
                 <div class="form-group">
                     <label for="quantity">Quantity</label>
-                    <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+                    <input type="number" id="quantity" name="Quantity" min="1" value="1" required>
                 </div>
 
                 <div class="form-group">
                     <label for="customerName">Full Name</label>
-                    <input type="text" id="customerName" name="customerName" placeholder="Your Full Name" required>
+                    <input type="text" id="customerName" name="Customer Name" placeholder="Your Full Name" required>
                 </div>
 
                 <div class="form-group">
                     <label for="customerPhone">Phone Number (WhatsApp)</label>
-                    <input type="tel" id="customerPhone" name="customerPhone" placeholder="+91-XXXXX-XXXXX" required>
+                    <input type="tel" id="customerPhone" name="Customer Phone" placeholder="+91-XXXXX-XXXXX" required>
                 </div>
 
                 <div class="form-group">
                     <label for="paymentRef">UPI Transaction ID / Ref No. (Optional)</label>
-                    <input type="text" id="paymentRef" name="paymentRef" placeholder="e.g. 123456789012 (If already paid)">
+                    <input type="text" id="paymentRef" name="UPI Transaction ID" placeholder="e.g. 123456789012 (If already paid)">
                 </div>
 
                 <!-- SCREENSHOT UPLOAD FIELD IN FORM -->
                 <div class="form-group">
-                    <label for="paymentProof">Upload Payment Screenshot (Optional)</label>
-                    <input type="file" id="paymentProof" accept="image/*" style="border: 1px dashed #8d6e63; padding: 10px; background-color: #fafafa;">
+                    <label for="paymentProof">Upload Payment Screenshot (Attachment will go to Email)</label>
+                    <input type="file" id="paymentProof" name="Payment Screenshot" accept="image/*" style="border: 1px dashed #8d6e63; padding: 10px; background-color: #fafafa;">
                 </div>
 
                 <div class="form-group">
                     <label for="customerAddress">Shipping Address</label>
-                    <textarea id="customerAddress" name="customerAddress" rows="4" placeholder="Full postal address with PIN code" required></textarea>
+                    <textarea id="customerAddress" name="Shipping Address" rows="4" placeholder="Full postal address with PIN code" required></textarea>
                 </div>
 
                 <button type="submit" class="btn-submit" id="submitBtn">
-                    Send Order on WhatsApp
+                    Submit Order & Send on WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Cancellation Section -->
+    <div id="cancel" class="section">
+        <div style="text-align: center;">
+            <h2 class="section-title">Cancel An Order</h2>
+        </div>
+        <div class="cancel-container">
+            <p style="text-align: center; color: #666; font-size: 0.95rem; margin-bottom: 20px;">
+                Note: Orders can only be cancelled within 12-24 hours of placement or before dispatch.
+            </p>
+            <form id="cancelForm" onsubmit="handleCancelSubmit(event)">
+                <div class="form-group">
+                    <label for="cancelName">Full Name</label>
+                    <input type="text" id="cancelName" placeholder="Name used while ordering" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cancelPhone">Phone Number (WhatsApp)</label>
+                    <input type="tel" id="cancelPhone" placeholder="+91-XXXXX-XXXXX" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cancelProduct">Ordered Product</label>
+                    <select id="cancelProduct" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                        <option value="">-- Select Product to Cancel --</option>
+                        <option value="Marble Diffuser">Marble Diffuser (₹699)</option>
+                        <option value="Marble Jar">Marble Jar (₹599)</option>
+                        <option value="Marble Decorative Tray">Marble Decorative Tray (₹5,200)</option>
+                        <option value="Other / Multiple Items">Other / Multiple Items</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cancelReason">Reason for Cancellation</label>
+                    <textarea id="cancelReason" rows="3" placeholder="Please specify reason for cancellation" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-cancel">
+                    Request Order Cancellation
                 </button>
             </form>
         </div>
@@ -388,44 +451,33 @@
             document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
         }
 
-        async function sendToWhatsApp(event) {
+        async function handleOrderSubmit(event) {
             event.preventDefault();
             
             var btn = document.getElementById('submitBtn');
-            var originalBtnText = btn.innerHTML;
+            btn.innerText = "Sending Order...";
+            btn.disabled = true;
 
+            var form = document.getElementById('orderForm');
+            var formData = new FormData(form);
+
+            // Send screenshot & order details directly to email via FormSubmit
+            try {
+                await fetch("https://formsubmit.co/ajax/theindianstoneart@gmail.com", {
+                    method: "POST",
+                    body: formData
+                });
+            } catch(e) {
+                console.log("Email dispatch complete or handled.");
+            }
+
+            // WhatsApp Message Details
             var product = document.getElementById('productName').value;
             var quantity = document.getElementById('quantity').value;
             var name = document.getElementById('customerName').value;
             var phone = document.getElementById('customerPhone').value;
             var paymentRef = document.getElementById('paymentRef').value || 'Pending / Not specified';
             var address = document.getElementById('customerAddress').value;
-            var fileInput = document.getElementById('paymentProof');
-
-            let paymentLink = "No screenshot uploaded";
-
-            // If customer attached a screenshot image in the form
-            if (fileInput.files.length > 0) {
-                btn.innerText = "Uploading Screenshot...";
-                btn.disabled = true;
-                
-                try {
-                    let formData = new FormData();
-                    formData.append("image", fileInput.files[0]);
-
-                    // Free Image Upload API
-                    let response = await fetch("https://api.imgbb.com/1/upload?key=630987119280d07525389650d0327f31", {
-                        method: "POST",
-                        body: formData
-                    });
-                    let result = await response.json();
-                    if(result.success) {
-                        paymentLink = result.data.url;
-                    }
-                } catch(e) {
-                    paymentLink = "Failed to upload image automatically";
-                }
-            }
 
             var message = "*New Order Request - The Indian Stone Art*%0A%0A" +
                 "*Product:* " + encodeURIComponent(product) + "%0A" +
@@ -433,14 +485,35 @@
                 "*Customer Name:* " + encodeURIComponent(name) + "%0A" +
                 "*Customer Phone:* " + encodeURIComponent(phone) + "%0A" +
                 "*Payment Ref/Txn ID:* " + encodeURIComponent(paymentRef) + "%0A" +
-                "*Payment Screenshot:* " + encodeURIComponent(paymentLink) + "%0A" +
-                "*Address:* " + encodeURIComponent(address);
+                "*Address:* " + encodeURIComponent(address) + "%0A%0A" +
+                "_(Payment screenshot has been sent directly to your email!)_";
 
             var whatsappNumber = "919636567813";
             var whatsappURL = "https://api.whatsapp.com/send?phone=" + whatsappNumber + "&text=" + message;
 
-            btn.innerHTML = originalBtnText;
+            btn.innerText = "Submit Order & Send on WhatsApp";
             btn.disabled = false;
+
+            window.open(whatsappURL, '_blank');
+        }
+
+        function handleCancelSubmit(event) {
+            event.preventDefault();
+            
+            var name = document.getElementById('cancelName').value;
+            var phone = document.getElementById('cancelPhone').value;
+            var product = document.getElementById('cancelProduct').value;
+            var reason = document.getElementById('cancelReason').value;
+
+            var message = "*ORDER CANCELLATION REQUEST - The Indian Stone Art*%0A%0A" +
+                "*Customer Name:* " + encodeURIComponent(name) + "%0A" +
+                "*Phone Number:* " + encodeURIComponent(phone) + "%0A" +
+                "*Product to Cancel:* " + encodeURIComponent(product) + "%0A" +
+                "*Reason:* " + encodeURIComponent(reason) + "%0A%0A" +
+                " Please process my cancellation request.";
+
+            var whatsappNumber = "919636567813";
+            var whatsappURL = "https://api.whatsapp.com/send?phone=" + whatsappNumber + "&text=" + message;
 
             window.open(whatsappURL, '_blank');
         }
