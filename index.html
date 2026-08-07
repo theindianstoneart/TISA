@@ -42,17 +42,16 @@
             color: #ffffff;
         }
 
-        /* Hero Section - UPDATED WITH USER IMAGE */
+        /* Hero Section */
         .hero {
             background-color: #5d4037;
             color: white;
             padding: 5rem 2rem;
             text-align: center;
-            /* Placeholder replaced with actual Hero Image link */
             background-image: linear-gradient(rgba(93, 64, 55, 0.8), rgba(93, 64, 55, 0.8)), url('https://i.ibb.co/7NRbNnLx/Chat-GPT-Image-Jun-2-2025-09-29-04-AM.png'); 
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Parallax-like effect */
+            background-attachment: fixed;
         }
         .hero h1 {
             font-size: 3.5rem;
@@ -103,10 +102,10 @@
         }
         .card img {
             width: 100%;
-            height: 250px; /* Force consistent image height */
+            height: 250px;
             border-radius: 4px;
             margin-bottom: 15px;
-            object-fit: contain; /* Ensure full image is visible, even if not square */
+            object-fit: contain;
             background-color: #fafafa;
         }
         .price {
@@ -130,6 +129,34 @@
         }
         .btn-buy:hover {
             background-color: #3e2723;
+        }
+
+        /* Payment Box */
+        .payment-box {
+            background-color: #f5f2f0;
+            border: 2px dashed #8d6e63;
+            border-radius: 6px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .payment-box h3 {
+            margin-top: 0;
+            color: #3e2723;
+        }
+        .payment-box p {
+            margin: 5px 0;
+            font-size: 0.95rem;
+        }
+        .upi-id {
+            background: #fff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: bold;
+            color: #5d4037;
+            border: 1px solid #d7ccc8;
+            margin-top: 5px;
         }
 
         /* Order Form Section */
@@ -161,7 +188,7 @@
             font-family: inherit;
         }
         .btn-submit {
-            background-color: #8d6e63;
+            background-color: #25D366; /* WhatsApp Green */
             color: white;
             border: none;
             padding: 12px 20px;
@@ -171,9 +198,13 @@
             width: 100%;
             font-weight: bold;
             transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         .btn-submit:hover {
-            background-color: #5d4037;
+            background-color: #1eb854;
         }
 
         /* Contact Section */
@@ -209,7 +240,7 @@
         </nav>
     </header>
 
-    <!-- Hero Section with Your Image -->
+    <!-- Hero Section -->
     <div id="home" class="hero">
         <h1>The Indian Stone Art</h1>
         <p>Exquisite Marble Handicrafts & Timeless Masterpieces</p>
@@ -225,51 +256,48 @@
         </p>
     </div>
 
-    <!-- Collection Section UPDATED WITH YOUR PRODUCT IMAGES -->
+    <!-- Collection Section -->
     <div id="collection" class="section">
         <div style="text-align: center;">
             <h2 class="section-title">Featured Marble Handicrafts</h2>
         </div>
         <div class="grid">
-            <!-- Product 1: Marble Diffuser -->
+            <!-- Product 1 -->
             <div class="card">
-                <!-- User provided Statue Image link -->
                 <img src="https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png" alt="Marble Deity Idol Statue">
                 <div>
-                    <h3>Marble Diffuser</h3>
-                    <p>Intricately carved from White marble, featuring exquisite detailing, traditional gold accents, and a highly polished finish.</p>
+                    <h3>Marble Deity Idol</h3>
+                    <p>Intricately carved from pure white Makrana marble, featuring exquisite detailing, traditional gold accents, and a highly polished finish.</p>
                 </div>
                 <div>
-                    <div class="price">₹699</div>
-                    <button class="btn-buy" onclick="buyProduct('Marble Diffuser')">Buy Now</button>
+                    <div class="price">₹4,500</div>
+                    <button class="btn-buy" onclick="buyProduct('Marble Deity Idol')">Buy Now</button>
                 </div>
             </div>
             
-            <!-- Product 2: Jar (REPLACED COASTERS) -->
+            <!-- Product 2 -->
             <div class="card">
-                <!-- User provided Jar Image link -->
                 <img src="https://i.ibb.co/Nd9cZ3PZ/image-2.png" alt="Handcrafted Marble Jar">
                 <div>
                     <h3>Marble Jar</h3>
                     <p>A premium, finely polished marble jar with a natural stone grain pattern. Perfect for elegant home storage or decorative use.</p>
                 </div>
                 <div>
-                    <div class="price">₹599</div>
+                    <div class="price">₹1,900</div>
                     <button class="btn-buy" onclick="buyProduct('Marble Jar')">Buy Now</button>
                 </div>
             </div>
             
-            <!-- Product 3: Marble Tray -->
+            <!-- Product 3 -->
             <div class="card">
-                <!-- User provided Elephant Image link -->
                 <img src="https://i.ibb.co/N6vNL3jd/1772187211766-2.jpg" alt="Marble Elephant Showpiece">
                 <div>
-                    <h3>Shell Tray</h3>
-                    <p>A decorative tray deisgned to elevate your Home Decor. Size 12"X12"X1.5"</p>
+                    <h3>Marble Elephant Showpiece</h3>
+                    <p>A majestic elephant sculpture carved from solid marble, detailed with traditional Jaali (lattice) work inside out.</p>
                 </div>
                 <div>
-                    <div class="price">₹5,200</div>
-                    <button class="btn-buy" onclick="buyProduct('Marble Tray')">Buy Now</button>
+                    <div class="price">₹3,800</div>
+                    <button class="btn-buy" onclick="buyProduct('Marble Elephant Showpiece')">Buy Now</button>
                 </div>
             </div>
         </div>
@@ -281,12 +309,20 @@
             <h2 class="section-title">Place Your Order</h2>
         </div>
         <div class="order-container">
-            <!-- For demonstration, the form submission is blocked with an alert. You would need to connect this to a backend service. -->
-            <form action="#" method="POST" onsubmit="alert('Thank you for your order! We will contact you at +91-963-656-7813 shortly.'); return false;">
+            
+            <!-- Payment Info Box -->
+            <div class="payment-box">
+                <h3>Payment Details (GPay / PhonePe / Paytm)</h3>
+                <p>Advance or Full Payment via UPI:</p>
+                <div class="upi-id">UPI ID: 9636567813@upi</div>
+                <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">After payment, please submit your order below or share transaction details on WhatsApp.</p>
+            </div>
+
+            <form id="whatsappForm" onsubmit="sendToWhatsApp(event)">
                 
                 <div class="form-group">
                     <label for="productName">Product Name</label>
-                    <input type="text" id="productName" name="productName" placeholder="Select a product from the collection" required readonly style="background-color: #f0f0f0; border-color: #aaa;">
+                    <input type="text" id="productName" name="productName" placeholder="Click 'Buy Now' on any product above" required readonly style="background-color: #f0f0f0; border-color: #aaa;">
                 </div>
 
                 <div class="form-group">
@@ -300,21 +336,23 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="customerPhone">Phone Number</label>
-                    <input type="tel" id="customerPhone" name="customerPhone" placeholder="+91" required>
+                    <label for="customerPhone">Phone Number (WhatsApp)</label>
+                    <input type="tel" id="customerPhone" name="customerPhone" placeholder="+91-XXXXX-XXXXX" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="customerEmail">Email Address (Optional)</label>
-                    <input type="email" id="customerEmail" name="customerEmail" placeholder="your@email.com">
+                    <label for="paymentRef">UPI Transaction ID / Ref No. (Optional)</label>
+                    <input type="text" id="paymentRef" name="paymentRef" placeholder="e.g. 123456789012 (If already paid)">
                 </div>
 
                 <div class="form-group">
                     <label for="customerAddress">Shipping Address</label>
-                    <textarea id="customerAddress" name="customerAddress" rows="4" placeholder="Full postal address with ZIP code" required></textarea>
+                    <textarea id="customerAddress" name="customerAddress" rows="4" placeholder="Full postal address with PIN code" required></textarea>
                 </div>
 
-                <button type="submit" class="btn-submit">Submit Order Request</button>
+                <button type="submit" class="btn-submit">
+                    Send Order on WhatsApp
+                </button>
             </form>
         </div>
     </div>
@@ -325,10 +363,10 @@
             <h2 class="section-title">Get In Touch</h2>
         </div>
         <div class="contact-info">
-            <p><strong>Address:</strong> Ambaji Industrial Area, Palanpur Highway, Chandrawati, Abu Road, Rajasthan, India</p>
+            <p><strong>Address:</strong> Main Market Road, Chandrawati, Rajasthan, India</p>
             <p><strong>Phone:</strong> +91-963-656-7813</p>
             <p><strong>Email:</strong> theindianstoneart@gmail.com</p>
-            <p><strong>Workshop Hours:</strong> Mon - Sun: 9:00 AM - 7:00 PM </p>
+            <p><strong>Workshop Hours:</strong> Mon - Sat: 9:00 AM - 7:00 PM | Sun: Closed</p>
         </div>
     </div>
 
@@ -337,13 +375,35 @@
         <p>&copy; 2026 The Indian Stone Art. All rights reserved.</p>
     </footer>
 
-    <!-- Interactive Scripts -->
+    <!-- Scripts -->
     <script>
         function buyProduct(itemName) {
-            // Auto-fill the product name in the order form
             document.getElementById('productName').value = itemName;
-            // Scroll down to the order form smoothly
             document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+            
+            var product = document.getElementById('productName').value;
+            var quantity = document.getElementById('quantity').value;
+            var name = document.getElementById('customerName').value;
+            var phone = document.getElementById('customerPhone').value;
+            var paymentRef = document.getElementById('paymentRef').value || 'Pending / Not specified';
+            var address = document.getElementById('customerAddress').value;
+
+            var message = "*New Order Request - The Indian Stone Art*%0A%0A" +
+                "*Product:* " + encodeURIComponent(product) + "%0A" +
+                "*Quantity:* " + encodeURIComponent(quantity) + "%0A" +
+                "*Customer Name:* " + encodeURIComponent(name) + "%0A" +
+                "*Customer Phone:* " + encodeURIComponent(phone) + "%0A" +
+                "*Payment Ref/Txn ID:* " + encodeURIComponent(paymentRef) + "%0A" +
+                "*Address:* " + encodeURIComponent(address);
+
+            var whatsappNumber = "919636567813";
+            var whatsappURL = "https://api.whatsapp.com/send?phone=" + whatsappNumber + "&text=" + message;
+
+            window.open(whatsappURL, '_blank');
         }
     </script>
 
