@@ -252,7 +252,7 @@
             <h2 class="section-title">Our Craftsmanship</h2>
         </div>
         <p style="text-align: center; max-width: 800px; margin: auto; font-size: 1.1rem;">
-            Welcome to The Indian Stone Art. We specialize in premium marble handicrafts, preserving and showcasing the rich heritage of traditional stone carving. From intricately detailed deities to elegant home decor accents, our artisans bring generations of skill to every piece we create using the finest quality marble.
+            Welcome to The Indian Stone Art. We specialize in premium marble handicrafts, preserving and showcasing the rich heritage of traditional stone carving. From intricately detailed home decor to elegant utility pieces, our artisans bring generations of skill to every creation using the finest quality marble.
         </p>
     </div>
 
@@ -262,42 +262,42 @@
             <h2 class="section-title">Featured Marble Handicrafts</h2>
         </div>
         <div class="grid">
-            <!-- Product 1 -->
+            <!-- Product 1: Marble Diffuser -->
             <div class="card">
-                <img src="https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png" alt="Marble Deity Idol Statue">
+                <img src="https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png" alt="Marble Diffuser">
                 <div>
-                    <h3>Marble Deity Idol</h3>
-                    <p>Intricately carved from pure white Makrana marble, featuring exquisite detailing, traditional gold accents, and a highly polished finish.</p>
+                    <h3>Marble Diffuser</h3>
+                    <p>A handcrafted marble aroma diffuser designed for essential oils and tea lights. Perfectly blends luxury decor with soothing fragrance for your home or workplace.</p>
                 </div>
                 <div>
-                    <div class="price">₹4,500</div>
-                    <button class="btn-buy" onclick="buyProduct('Marble Deity Idol')">Buy Now</button>
+                    <div class="price">₹699</div>
+                    <button class="btn-buy" onclick="buyProduct('Marble Diffuser')">Buy Now</button>
                 </div>
             </div>
             
-            <!-- Product 2 -->
+            <!-- Product 2: Marble Jar -->
             <div class="card">
                 <img src="https://i.ibb.co/Nd9cZ3PZ/image-2.png" alt="Handcrafted Marble Jar">
                 <div>
                     <h3>Marble Jar</h3>
-                    <p>A premium, finely polished marble jar with a natural stone grain pattern. Perfect for elegant home storage or decorative use.</p>
+                    <p>A premium, finely polished marble jar with a natural stone grain pattern. Perfect for elegant home storage or decorative display.</p>
                 </div>
                 <div>
-                    <div class="price">₹1,900</div>
+                    <div class="price">₹599</div>
                     <button class="btn-buy" onclick="buyProduct('Marble Jar')">Buy Now</button>
                 </div>
             </div>
             
-            <!-- Product 3 -->
+            <!-- Product 3: Marble Decorative Tray -->
             <div class="card">
-                <img src="https://i.ibb.co/N6vNL3jd/1772187211766-2.jpg" alt="Marble Elephant Showpiece">
+                <img src="https://i.ibb.co/N6vNL3jd/1772187211766-2.jpg" alt="Marble Decorative Tray">
                 <div>
-                    <h3>Marble Elephant Showpiece</h3>
-                    <p>A majestic elephant sculpture carved from solid marble, detailed with traditional Jaali (lattice) work inside out.</p>
+                    <h3>Marble Decorative Tray</h3>
+                    <p>An exquisite, handcrafted marble tray designed with elegant stone carving. Ideal as a luxurious centerpiece, vanity tray, or premium gifting item.</p>
                 </div>
                 <div>
-                    <div class="price">₹3,800</div>
-                    <button class="btn-buy" onclick="buyProduct('Marble Elephant Showpiece')">Buy Now</button>
+                    <div class="price">₹5,200</div>
+                    <button class="btn-buy" onclick="buyProduct('Marble Decorative Tray')">Buy Now</button>
                 </div>
             </div>
         </div>
@@ -315,7 +315,7 @@
                 <h3>Payment Details (GPay / PhonePe / Paytm)</h3>
                 <p>Advance or Full Payment via UPI:</p>
                 <div class="upi-id">UPI ID: 9636567813@upi</div>
-                <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">After payment, please submit your order below or share transaction details on WhatsApp.</p>
+                <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">Payment karne ke baad neeche screenshot attach karke order submit karein.</p>
             </div>
 
             <form id="whatsappForm" onsubmit="sendToWhatsApp(event)">
@@ -345,12 +345,18 @@
                     <input type="text" id="paymentRef" name="paymentRef" placeholder="e.g. 123456789012 (If already paid)">
                 </div>
 
+                <!-- SCREENSHOT UPLOAD FIELD IN FORM -->
+                <div class="form-group">
+                    <label for="paymentProof">Upload Payment Screenshot (Optional)</label>
+                    <input type="file" id="paymentProof" accept="image/*" style="border: 1px dashed #8d6e63; padding: 10px; background-color: #fafafa;">
+                </div>
+
                 <div class="form-group">
                     <label for="customerAddress">Shipping Address</label>
                     <textarea id="customerAddress" name="customerAddress" rows="4" placeholder="Full postal address with PIN code" required></textarea>
                 </div>
 
-                <button type="submit" class="btn-submit">
+                <button type="submit" class="btn-submit" id="submitBtn">
                     Send Order on WhatsApp
                 </button>
             </form>
@@ -382,15 +388,44 @@
             document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function sendToWhatsApp(event) {
+        async function sendToWhatsApp(event) {
             event.preventDefault();
             
+            var btn = document.getElementById('submitBtn');
+            var originalBtnText = btn.innerHTML;
+
             var product = document.getElementById('productName').value;
             var quantity = document.getElementById('quantity').value;
             var name = document.getElementById('customerName').value;
             var phone = document.getElementById('customerPhone').value;
             var paymentRef = document.getElementById('paymentRef').value || 'Pending / Not specified';
             var address = document.getElementById('customerAddress').value;
+            var fileInput = document.getElementById('paymentProof');
+
+            let paymentLink = "No screenshot uploaded";
+
+            // If customer attached a screenshot image in the form
+            if (fileInput.files.length > 0) {
+                btn.innerText = "Uploading Screenshot...";
+                btn.disabled = true;
+                
+                try {
+                    let formData = new FormData();
+                    formData.append("image", fileInput.files[0]);
+
+                    // Free Image Upload API
+                    let response = await fetch("https://api.imgbb.com/1/upload?key=630987119280d07525389650d0327f31", {
+                        method: "POST",
+                        body: formData
+                    });
+                    let result = await response.json();
+                    if(result.success) {
+                        paymentLink = result.data.url;
+                    }
+                } catch(e) {
+                    paymentLink = "Failed to upload image automatically";
+                }
+            }
 
             var message = "*New Order Request - The Indian Stone Art*%0A%0A" +
                 "*Product:* " + encodeURIComponent(product) + "%0A" +
@@ -398,10 +433,14 @@
                 "*Customer Name:* " + encodeURIComponent(name) + "%0A" +
                 "*Customer Phone:* " + encodeURIComponent(phone) + "%0A" +
                 "*Payment Ref/Txn ID:* " + encodeURIComponent(paymentRef) + "%0A" +
+                "*Payment Screenshot:* " + encodeURIComponent(paymentLink) + "%0A" +
                 "*Address:* " + encodeURIComponent(address);
 
             var whatsappNumber = "919636567813";
             var whatsappURL = "https://api.whatsapp.com/send?phone=" + whatsappNumber + "&text=" + message;
+
+            btn.innerHTML = originalBtnText;
+            btn.disabled = false;
 
             window.open(whatsappURL, '_blank');
         }
