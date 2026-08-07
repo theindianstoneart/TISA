@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us | The Indian Stone Art</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #1a1512; --accent: #c5a059; --bg-light: #fdfbf7; }
+        body { font-family: 'Montserrat', sans-serif; margin: 0; background-color: var(--bg-light); line-height: 1.8; }
+        header { background-color: var(--primary); padding: 1rem 2rem; border-bottom: 2px solid var(--accent); }
+        .nav-container { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
+        .brand-title { font-family: 'Cinzel', serif; font-size: 1.3rem; color: #fff; text-decoration: none; }
+        nav a { color: #dcd6cd; text-decoration: none; margin-left: 20px; font-size: 0.85rem; text-transform: uppercase; }
+        .section { max-width: 900px; margin: auto; padding: 4rem 2rem; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="brand-title">THE INDIAN STONE ART</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html" style="color:var(--accent);">About Heritage</a>
+                <a href="collection.html">Catalog</a>
+                <a href="track.html">Track Order</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="section">
+        <h1 style="font-family:'Cinzel', serif; font-size: 2.5rem; color: var(--primary);">Our Heritage & Artisans</h1>
+        <p style="font-size: 1.1rem; color: #555;">
+            Located in Chandrawati, Rajasthan, <strong>The Indian Stone Art</strong> is dedicated to keeping centuries-old marble carving traditions alive. Every single diffuser, tray, and decorative jar in our collection is hand-carved from genuine Makrana and Rajasthan marble by master stone artisans.
+        </p>
+    </div>
+
+</body>
+</html>
