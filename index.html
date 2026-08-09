@@ -83,7 +83,6 @@
             height: 55px;
             width: auto;
             object-fit: contain;
-            /* Border aur border-radius hata diya gaya hai */
         }
 
         .brand-name {
@@ -103,7 +102,7 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* Navigation Menu with Glossy Neon Hover & Animated Underline */
+        /* Navigation Menu */
         nav {
             display: flex;
             align-items: center;
@@ -122,7 +121,6 @@
             transition: all 0.3s ease-in-out;
         }
 
-        /* Underline bar element */
         nav a::after {
             content: '';
             position: absolute;
@@ -136,7 +134,6 @@
             border-radius: 2px;
         }
 
-        /* Hover State with Glossy Neon Glow Effect */
         nav a:hover {
             color: var(--accent);
             text-shadow: 0 0 8px rgba(184, 134, 11, 0.6), 0 0 15px rgba(255, 215, 0, 0.4);
@@ -166,7 +163,7 @@
             gap: 6px;
         }
 
-        /* Hero Banner Section (Clear Image - No Blur/Gradient Overlay) */
+        /* Hero Banner Section */
         .hero {
             position: relative;
             height: 70vh;
@@ -183,7 +180,6 @@
             max-width: 800px;
         }
 
-        /* Added Text Shadow to make text readable on the clear image */
         .hero-subtitle {
             font-size: 0.9rem;
             text-transform: uppercase;
@@ -264,11 +260,20 @@
             font-size: 0.95rem;
         }
 
-        /* Product Cards Grid */
+        /* General Product Grid (3+ items per row) */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
+        }
+
+        /* Masterpiece Grid (Strictly 2 items per row) */
+        .masterpiece-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: auto;
         }
 
         .product-card {
@@ -318,15 +323,40 @@
             margin-bottom: 8px;
         }
 
+        /* Product Description & See More logic */
         .product-desc {
             font-size: 0.85rem;
             color: var(--text-muted);
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .product-desc.expanded {
+            -webkit-line-clamp: unset;
+            line-clamp: unset;
+            overflow: visible;
+        }
+
+        .see-more-btn {
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+
+        .see-more-btn:hover {
+            color: var(--primary);
+            text-decoration: underline;
         }
 
         .price-wrap {
@@ -334,6 +364,7 @@
             align-items: center;
             gap: 10px;
             margin-bottom: 15px;
+            margin-top: auto;
         }
 
         .price-current {
@@ -474,7 +505,6 @@
             opacity: 0.9;
         }
 
-        /* Map Container */
         .map-container {
             border-radius: 8px;
             overflow: hidden;
@@ -489,7 +519,6 @@
             border: 0;
         }
 
-        /* Trust Badges / Features Bar */
         .trust-bar {
             background-color: #ffffff;
             border-top: 1px solid var(--border-color);
@@ -519,7 +548,6 @@
             color: var(--text-muted);
         }
 
-        /* Footer */
         footer {
             background-color: var(--primary);
             color: #b0a79e;
@@ -563,7 +591,6 @@
             font-size: 0.8rem;
         }
 
-        /* Floating WhatsApp Button */
         .float-wa {
             position: fixed;
             bottom: 25px;
@@ -586,6 +613,7 @@
             .header-container { flex-direction: column; gap: 15px; }
             .hero h1 { font-size: 2.2rem; }
             nav { gap: 20px; }
+            .masterpiece-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -632,7 +660,7 @@
         </div>
     </section>
 
-    <!-- Premium Featured Products (Masterpieces Section) -->
+    <!-- Premium Featured Products (Masterpieces Section - 2 Per Row) -->
     <section class="section">
         <div class="section-header">
             <h2 class="section-title">Premium Masterpieces</h2>
@@ -640,14 +668,17 @@
             <p class="section-desc">Our flagship handcrafted stone creations.</p>
         </div>
 
-        <div class="products-grid">
+        <!-- Masterpiece Grid strictly limited to 2 items per line -->
+        <div class="masterpiece-grid">
             <!-- Premium Product 1 (Updated Pooja Thali) -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
                 <img src="https://i.ibb.co/21TqSK8V/1778139888040-2.jpg" alt="Marble Pooja Thali">
                 <div>
                     <h3 class="product-title">Marble Pooja Thali 6 inch</h3>
-                    <p class="product-desc">Beautifully handcrafted 6-inch marble pooja thali featuring intricate design work, perfect for auspicious occasions and daily worship.</p>
+                    <p class="product-desc" id="desc-m1">Beautifully handcrafted 6-inch marble pooja thali featuring intricate design work, perfect for auspicious occasions and daily worship. Included components: 1 Plate (6X6X1 inches), 1 Kalash (2X2X2 inches), and 1 Diya (2.5X2.5X0.75 inches).</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-m1', this)">See More</span>
+                    
                     <div class="price-wrap">
                         <span class="price-current">₹799</span>
                         <span class="price-original">₹1,499</span>
@@ -656,28 +687,32 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Buy Now</button>
             </div>
 
-            <!-- Premium Product 2 -->
+            <!-- Premium Product 2 (Updated Diya Set) -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
-                <img src="https://i.ibb.co/7NRbNnLx/Chat-GPT-Image-Jun-2-2025-09-29-04-AM.png" alt="Marble Tea Light Set">
+                <img src="https://i.ibb.co/7NRbNnLx/Chat-GPT-Image-Jun-2-2025-09-29-04-AM.png" alt="Marble Diya Set">
                 <div>
-                    <h3 class="product-title">Marble Tea Light Set (6 Pcs)</h3>
-                    <p class="product-desc">Luxury set of 6 carved marble tea light holders for royal home decor.</p>
+                    <h3 class="product-title">Marble Diya Set (6 Pcs)</h3>
+                    <p class="product-desc" id="desc-m2">Luxury set of 6 carved marble diyas for royal home decor and festive lighting. Each diya is intricately carved and measures exactly 2.5X2.5X0.75 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-m2', this)">See More</span>
+
                     <div class="price-wrap">
                         <span class="price-current">₹899</span>
                         <span class="price-original">₹1,599</span>
                     </div>
                 </div>
-                <button class="btn-buy-card" onclick="openOrderModal('Marble Tea Light Set (6 Pcs)')">Buy Now</button>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Diya Set (6 Pcs)')">Buy Now</button>
             </div>
 
-            <!-- Premium Product 3 -->
+            <!-- Premium Product 3 (Decorative Tray) -->
             <div class="product-card">
                 <span class="badge-discount">Signature Edition</span>
                 <img src="https://i.ibb.co/N6vNL3jd/1772187211766-2.jpg" alt="Marble Decorative Tray">
                 <div>
                     <h3 class="product-title">Marble Decorative Tray</h3>
-                    <p class="product-desc">Exquisite solid marble carved centerpiece tray designed for luxury living rooms, vanity, or premium gifting.</p>
+                    <p class="product-desc" id="desc-m3">Exquisite solid marble carved centerpiece tray designed for luxury living rooms, vanity displays, or premium gifting. Generous Size: 12X12X1.5 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-m3', this)">See More</span>
+
                     <div class="price-wrap">
                         <span class="price-current">₹5,200</span>
                         <span class="price-original">₹7,500</span>
@@ -686,7 +721,6 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Decorative Tray')">Buy Now</button>
             </div>
             
-            <!-- Removed Aroma Diffuser from Masterpieces as requested -->
         </div>
     </section>
 
@@ -705,7 +739,9 @@
                 <img src="https://i.ibb.co/21TqSK8V/1778139888040-2.jpg" alt="Marble Pooja Thali">
                 <div>
                     <h3 class="product-title">Marble Pooja Thali 6 inch</h3>
-                    <p class="product-desc">Beautifully handcrafted 6-inch marble pooja thali featuring intricate design work, perfect for auspicious occasions and daily worship.</p>
+                    <p class="product-desc" id="desc-c1">Beautifully handcrafted 6-inch marble pooja thali featuring intricate design work, perfect for auspicious occasions and daily worship. Included components: 1 Plate (6X6X1 inches), 1 Kalash (2X2X2 inches), and 1 Diya (2.5X2.5X0.75 inches).</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c1', this)">See More</span>
+
                     <div class="price-wrap">
                         <span class="price-current">₹799</span>
                         <span class="price-original">₹1,499</span>
@@ -714,43 +750,49 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Buy Now</button>
             </div>
 
-            <!-- Product 2 -->
+            <!-- Product 2 (Updated Diya Set) -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
-                <img src="https://i.ibb.co/7NRbNnLx/Chat-GPT-Image-Jun-2-2025-09-29-04-AM.png" alt="Marble Tea Light Set">
+                <img src="https://i.ibb.co/7NRbNnLx/Chat-GPT-Image-Jun-2-2025-09-29-04-AM.png" alt="Marble Diya Set">
                 <div>
-                    <h3 class="product-title">Marble Tea Light Set (6 Pcs)</h3>
-                    <p class="product-desc">Luxury set of 6 carved marble tea light holders for royal home decor.</p>
+                    <h3 class="product-title">Marble Diya Set (6 Pcs)</h3>
+                    <p class="product-desc" id="desc-c2">Luxury set of 6 carved marble diyas for royal home decor and festive lighting. Each diya is intricately carved and measures exactly 2.5X2.5X0.75 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c2', this)">See More</span>
+
                     <div class="price-wrap">
                         <span class="price-current">₹899</span>
                         <span class="price-original">₹1,599</span>
                     </div>
                 </div>
-                <button class="btn-buy-card" onclick="openOrderModal('Marble Tea Light Set (6 Pcs)')">Buy Now</button>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Diya Set (6 Pcs)')">Buy Now</button>
             </div>
 
-            <!-- Product 3 -->
+            <!-- Product 3 (Holy Kalash) -->
             <div class="product-card">
                 <span class="badge-discount">New Arrival</span>
-                <img src="https://i.ibb.co/xtHCqZ39/1000244483.png" alt="Marble Small Accessory">
+                <img src="https://i.ibb.co/xtHCqZ39/1000244483.png" alt="Marble Holy Kalash">
                 <div>
-                    <h3 class="product-title">Handcrafted Small Marble Accessory</h3>
-                    <p class="product-desc">Finely polished compact marble artifact suitable for home accent & decor.</p>
+                    <h3 class="product-title">Marble Holy Kalash</h3>
+                    <p class="product-desc" id="desc-c3">Finely polished compact marble holy kalash suitable for home accent, pooja room & traditional decor setups. Perfect Size: 2X2X2 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c3', this)">See More</span>
+
                     <div class="price-wrap">
                         <span class="price-current">₹399</span>
                         <span class="price-original">₹699</span>
                     </div>
                 </div>
-                <button class="btn-buy-card" onclick="openOrderModal('Handcrafted Small Marble Accessory')">Buy Now</button>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Holy Kalash')">Buy Now</button>
             </div>
 
-            <!-- Product 4 (Aroma Diffuser shifted here entirely) -->
+            <!-- Product 4 (Aroma Diffuser with size) -->
             <div class="product-card">
                 <span class="badge-discount">Best Seller</span>
                 <img src="https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png" alt="Marble Aroma Diffuser">
                 <div>
                     <h3 class="product-title">Marble Aroma Diffuser</h3>
-                    <p class="product-desc">Handcrafted marble essential oil diffuser with tea light warmer space.</p>
+                    <p class="product-desc" id="desc-c4">Handcrafted marble essential oil diffuser with tea light warmer space. Perfect luxury home aroma accessory. Standard Size: 4X4X4 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c4', this)">See More</span>
+
                     <div class="price-wrap">
                         <span class="price-current">₹699</span>
                         <span class="price-original">₹1,200</span>
@@ -759,13 +801,15 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Aroma Diffuser')">Buy Now</button>
             </div>
 
-            <!-- Product 5 -->
+            <!-- Product 5 (Marble Jar with size) -->
             <div class="product-card">
                 <span class="badge-discount">Popular</span>
                 <img src="https://i.ibb.co/Nd9cZ3PZ/image-2.png" alt="Handcrafted Marble Jar">
                 <div>
                     <h3 class="product-title">Handcrafted Marble Jar</h3>
-                    <p class="product-desc">Finely polished white marble storage jar featuring natural stone grain patterns.</p>
+                    <p class="product-desc" id="desc-c5">Finely polished white marble storage jar featuring natural stone grain patterns and a snug-fit lid. Practical Size: 3X3X4 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c5', this)">See More</span>
+
                     <div class="price-wrap">
                         <span class="price-current">₹599</span>
                         <span class="price-original">₹999</span>
@@ -774,13 +818,15 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Handcrafted Marble Jar')">Buy Now</button>
             </div>
 
-            <!-- Product 6 -->
+            <!-- Product 6 (Decorative Tray in Collection) -->
             <div class="product-card">
                 <span class="badge-discount">Royal Craft</span>
                 <img src="https://i.ibb.co/N6vNL3jd/1772187211766-2.jpg" alt="Marble Decorative Tray">
                 <div>
                     <h3 class="product-title">Marble Decorative Tray</h3>
-                    <p class="product-desc">Exquisite solid marble carved centerpiece tray designed for luxury living rooms.</p>
+                    <p class="product-desc" id="desc-c6">Exquisite solid marble carved centerpiece tray designed for luxury living rooms, vanity displays, or premium gifting. Generous Size: 12X12X1.5 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c6', this)">See More</span>
+
                     <div class="price-wrap">
                         <span class="price-current">₹5,200</span>
                         <span class="price-original">₹7,500</span>
@@ -795,7 +841,9 @@
                 <img src="https://i.ibb.co/8LBvrYXC/marble-cracker-dish.webp" alt="Marble Cracker Dish">
                 <div>
                     <h3 class="product-title">Marble Cracker Dish</h3>
-                    <p class="product-desc">Minimalist carved marble serving platter ideal for dry fruits and snacks.</p>
+                    <p class="product-desc" id="desc-c7">Minimalist carved marble serving platter ideal for dry fruits and snacks. An elegant addition to any dining arrangement.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c7', this)">See More</span>
+
                     <div class="price-wrap">
                         <span class="price-current">₹850</span>
                         <span class="price-original">₹1,350</span>
@@ -918,8 +966,21 @@
         💬
     </a>
 
-    <!-- JavaScript Modal & Automated Message Logic -->
+    <!-- JavaScript Modal, 'See More' Toggle & Automated Message Logic -->
     <script>
+        // Description 'See More' Toggle Logic
+        function toggleDesc(id, btnElement) {
+            var descElement = document.getElementById(id);
+            if (descElement.classList.contains("expanded")) {
+                descElement.classList.remove("expanded");
+                btnElement.innerText = "See More";
+            } else {
+                descElement.classList.add("expanded");
+                btnElement.innerText = "See Less";
+            }
+        }
+
+        // Order Modal Logic
         function openOrderModal(itemName) {
             document.getElementById('productName').value = itemName;
             document.getElementById('orderModal').style.display = 'flex';
@@ -936,6 +997,7 @@
             }
         }
 
+        // Form Submit Logic
         async function handleOrderSubmit(event) {
             event.preventDefault();
             
@@ -977,8 +1039,10 @@
                 "----------------------------------%0A" +
                 "ℹ️ *Order Confirmation & Tracking:*%0A" +
                 "Payment verify hone ke baad aapko confirmation message aur Tracking ID bhej di jayegi.%0A%0A" +
-                "⚠️ *Cancellation Policy:*%0A" +
-                "Aapka order 24-48 hours mein dispatch hoga. Agar order cancel karna ho, toh kripya dispatch hone se pehle request bhej dein.";
+                "⚠️ *Order & Cancellation Policy:*%0A" +
+                "• Aapka order 24-48 hours mein dispatch hoga (Sunday aur festivals par dispatch band rehta hai).%0A" +
+                "• Agar order cancel karna ho, toh kripya dispatch hone se pehle WhatsApp par inform karein. Dispatch hone ke baad order cancel nahi hoga.%0A" +
+                "• Agar aapne payment kar diya hai, toh cancel hone par aapke paise UPI ke through wapas (refund) transfer kar diye jayenge.";
 
             btn.innerText = "Submit Order & Send on WhatsApp";
             btn.disabled = false;
