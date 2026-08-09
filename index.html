@@ -898,6 +898,7 @@
     </a>
 
     <!-- JavaScript Logic -->
+   <!-- Script Section (Replace this at the bottom of index.html) -->
     <script>
         function selectProduct(itemName) {
             document.getElementById('productName').value = itemName;
@@ -908,45 +909,69 @@
             event.preventDefault();
             
             var btn = document.getElementById('submitBtn');
-            btn.innerText = "Processing Order...";
+            btn.innerText = "Uploading Photo & Processing...";
             btn.disabled = true;
 
-            var form = document.getElementById('orderForm');
-            var formData = new FormData(form);
+            var fileInput = document.getElementById('paymentProof');
+            let photoLink = "No photo attached";
 
-            // Send Email Copy with Screenshot via FormSubmit
-            try {
-                await fetch("https://formsubmit.co/ajax/theindianstoneart@gmail.com", {
-                    method: "POST",
-                    body: formData
-                });
-            } catch(e) {
-                console.log("Email dispatch complete.");
+            // 1. Upload photo to image server automatically
+            if (fileInput.files.length > 0) {
+                try {
+                    let formData = new FormData();
+                    formData.append("image", fileInput.files[0]);
+
+                    let response = await fetch("https://api.imgbb.com/1/upload?key=630987119280d07525389650d0327f31", {
+                        method: "POST",
+                        body: formData
+                    });
+                    let result = await response.json();
+                    if (result.success) {
+                        photoLink = result.data.url;
+                    }
+                } catch(e) {
+                    photoLink = "Upload failed";
+                }
             }
 
-            // Prepare WhatsApp Order Payload
+            // 2. Send details + Direct Photo Link to Email
             var product = document.getElementById('productName').value;
             var quantity = document.getElementById('quantity').value;
             var name = document.getElementById('customerName').value;
             var phone = document.getElementById('customerPhone').value;
-            var paymentRef = document.getElementById('paymentRef').value || 'Pending / Not specified';
+            var paymentRef = document.getElementById('paymentRef').value || 'Pending';
             var address = document.getElementById('customerAddress').value;
 
+            try {
+                await fetch("https://formsubmit.co/ajax/theindianstoneart@gmail.com", {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        "Product": product,
+                        "Quantity": quantity,
+                        "Customer Name": name,
+                        "Phone": phone,
+                        "Payment Ref": paymentRef,
+                        "Payment Screenshot Link": photoLink,
+                        "Shipping Address": address
+                    })
+                });
+            } catch(e) {}
+
+            // 3. Open WhatsApp with Photo Link included in message
             var message = "*New Order - The Indian Stone Art*%0A%0A" +
                 "*Product:* " + encodeURIComponent(product) + "%0A" +
                 "*Quantity:* " + encodeURIComponent(quantity) + "%0A" +
                 "*Customer:* " + encodeURIComponent(name) + "%0A" +
                 "*Phone:* " + encodeURIComponent(phone) + "%0A" +
                 "*Payment Ref:* " + encodeURIComponent(paymentRef) + "%0A" +
-                "*Address:* " + encodeURIComponent(address) + "%0A%0A" +
-                "_(Payment screenshot sent to workshop email!)_";
-
-            var whatsappURL = "https://api.whatsapp.com/send?phone=919636567813&text=" + message;
+                "*Screenshot Link:* " + encodeURIComponent(photoLink) + "%0A" +
+                "*Address:* " + encodeURIComponent(address);
 
             btn.innerText = "Submit Order & Send on WhatsApp";
             btn.disabled = false;
 
-            window.open(whatsappURL, '_blank');
+            window.open("https://api.whatsapp.com/send?phone=919636567813&text=" + message, '_blank');
         }
 
         function handleCancelSubmit(event) {
