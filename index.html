@@ -104,17 +104,17 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* Navigation Menu */
+        /* Navigation Menu (Cleaned up) */
         nav {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 30px;
         }
 
         nav a {
             text-decoration: none;
             color: var(--text-dark);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -148,7 +148,7 @@
         /* Hero Banner Section */
         .hero {
             position: relative;
-            height: 75vh;
+            height: 70vh;
             background: linear-gradient(rgba(31, 27, 24, 0.55), rgba(31, 27, 24, 0.7)), url('https://i.ibb.co/7NRbNnLx/Chat-GPT-Image-Jun-2-2025-09-29-04-AM.png') center/cover no-repeat;
             display: flex;
             align-items: center;
@@ -205,53 +205,6 @@
         .btn-primary:hover {
             background-color: var(--primary);
             color: var(--accent);
-        }
-
-        /* Category Circle Badges (Natural Handicrafts Style) */
-        .categories-sec {
-            max-width: 1250px;
-            margin: -50px auto 50px;
-            position: relative;
-            z-index: 10;
-            padding: 0 20px;
-        }
-
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 20px;
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border: 1px solid var(--border-color);
-        }
-
-        .cat-item {
-            text-align: center;
-            text-decoration: none;
-            color: var(--text-dark);
-        }
-
-        .cat-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin: 0 auto 10px;
-            object-fit: cover;
-            border: 2px solid var(--accent-light);
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .cat-item:hover .cat-img {
-            transform: scale(1.08);
-            border-color: var(--accent);
-        }
-
-        .cat-item span {
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: block;
         }
 
         /* Section Layout */
@@ -388,68 +341,99 @@
             background-color: var(--accent);
         }
 
-        /* Order & Payment Form Container */
-        .order-wrapper {
+        /* Modal Overlay for Popup Order Form */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-content {
             background: #ffffff;
             border: 1px solid var(--border-color);
             border-top: 4px solid var(--accent);
             border-radius: 8px;
-            padding: 40px;
-            max-width: 650px;
-            margin: auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 30px;
+            max-width: 550px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-weight: bold;
+        }
+
+        .modal-close:hover {
+            color: var(--primary);
         }
 
         .payment-box {
             background-color: var(--accent-light);
             border: 1px dashed var(--accent);
-            padding: 20px;
+            padding: 15px;
             border-radius: 6px;
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .upi-badge {
             background: #ffffff;
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 4px;
             display: inline-block;
             font-weight: 700;
             color: var(--primary);
             border: 1px solid var(--border-color);
-            margin-top: 8px;
-            font-size: 1.1rem;
+            margin-top: 5px;
+            font-size: 1rem;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .form-group label {
             display: block;
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             color: var(--primary);
         }
 
-        .form-group input, .form-group textarea, .form-group select {
+        .form-group input, .form-group textarea {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             border: 1px solid var(--border-color);
             border-radius: 4px;
             font-family: inherit;
             font-size: 0.9rem;
-            background-color: #fdfdfd;
         }
 
         .btn-submit-order {
             background-color: var(--whatsapp-green);
             color: #ffffff;
             border: none;
-            padding: 14px;
+            padding: 12px;
             width: 100%;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             border-radius: 4px;
             cursor: pointer;
@@ -464,27 +448,19 @@
             opacity: 0.9;
         }
 
-        /* Order Cancellation Box */
-        .cancel-wrapper {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-top: 4px solid #dc2626;
+        /* Map & Location Section */
+        .map-container {
             border-radius: 8px;
-            padding: 35px;
-            max-width: 650px;
-            margin: auto;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin-top: 25px;
         }
 
-        .btn-cancel-submit {
-            background-color: #dc2626;
-            color: #ffffff;
-            border: none;
-            padding: 12px;
+        .map-container iframe {
             width: 100%;
-            font-size: 0.95rem;
-            font-weight: 700;
-            border-radius: 4px;
-            cursor: pointer;
+            height: 350px;
+            border: 0;
         }
 
         /* Trust Badges / Features Bar */
@@ -583,7 +559,7 @@
         @media (max-width: 768px) {
             .header-container { flex-direction: column; gap: 15px; }
             .hero h1 { font-size: 2.2rem; }
-            nav { flex-wrap: wrap; justify-content: center; gap: 15px; }
+            nav { gap: 20px; }
         }
     </style>
 </head>
@@ -605,13 +581,11 @@
                 </div>
             </a>
 
+            <!-- Cleaned Navigation (Heritage, Order, Cancel removed) -->
             <nav>
                 <a href="#home">Home</a>
-                <a href="#about">Heritage</a>
                 <a href="#collection">Collection</a>
-                <a href="#order">Order Now</a>
-                <a href="#cancel">Cancel Order</a>
-                <a href="#contact">Contact</a>
+                <a href="#contact">Contact & Workshop</a>
             </nav>
 
             <div class="header-actions">
@@ -632,50 +606,31 @@
         </div>
     </section>
 
-    <!-- Circular Category Badges (Natural Handicrafts Style) -->
-    <div class="categories-sec">
-        <div class="category-grid">
-            <a href="#collection" class="cat-item">
-                <img src="https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png" class="cat-img" alt="Aroma Diffusers">
-                <span>Diffusers</span>
-            </a>
-            <a href="#collection" class="cat-item">
-                <img src="https://i.ibb.co/Nd9cZ3PZ/image-2.png" class="cat-img" alt="Marble Jars">
-                <span>Marble Jars</span>
-            </a>
-            <a href="#collection" class="cat-item">
-                <img src="https://i.ibb.co/N6vNL3jd/1772187211766-2.jpg" class="cat-img" alt="Decorative Trays">
-                <span>Vanity Trays</span>
-            </a>
-            <a href="#collection" class="cat-item">
-                <img src="https://i.ibb.co/8LBvrYXC/marble-cracker-dish.webp" class="cat-img" alt="Cracker Dishes">
-                <span>Platters & Dishes</span>
-            </a>
-        </div>
-    </div>
-
-    <!-- About / Heritage Section -->
-    <section id="about" class="section">
+    <!-- Premium Featured Products (Home Page Highlights) -->
+    <section class="section">
         <div class="section-header">
-            <h2 class="section-title">Our Heritage & Craftsmanship</h2>
+            <h2 class="section-title">Premium Masterpieces</h2>
             <div class="section-divider"></div>
-            <p class="section-desc">Preserving centuries-old traditional stone carving in Chandrawati, Rajasthan.</p>
-        </div>
-        <div style="max-width: 850px; margin: auto; text-align: center; color: var(--text-muted); font-size: 1rem; line-height: 1.8;">
-            Welcome to <b>The Indian Stone Art</b>. Every artifact in our gallery is carefully hand-carved from high-grade Rajasthan marble by skilled master artisans. We bring royal aesthetic heritage, precision carving, and natural stone durability directly from our workshop to your home.
-        </div>
-    </section>
-
-    <!-- Featured Collection -->
-    <section id="collection" class="section">
-        <div class="section-header">
-            <h2 class="section-title">Featured Marble Collection</h2>
-            <div class="section-divider"></div>
-            <p class="section-desc">Explore our top handcrafted marble pieces ready for direct delivery.</p>
+            <p class="section-desc">Our flagship handcrafted stone creations.</p>
         </div>
 
         <div class="products-grid">
-            <!-- Product 1 -->
+            <!-- Premium Product 1 -->
+            <div class="product-card">
+                <span class="badge-discount">Signature Edition</span>
+                <img src="https://i.ibb.co/N6vNL3jd/1772187211766-2.jpg" alt="Marble Decorative Tray">
+                <div>
+                    <h3 class="product-title">Marble Decorative Tray</h3>
+                    <p class="product-desc">Exquisite solid marble carved centerpiece tray designed for luxury living rooms, vanity, or premium gifting.</p>
+                    <div class="price-wrap">
+                        <span class="price-current">₹5,200</span>
+                        <span class="price-original">₹7,500</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Decorative Tray')">Buy Now</button>
+            </div>
+
+            <!-- Premium Product 2 -->
             <div class="product-card">
                 <span class="badge-discount">Best Seller</span>
                 <img src="https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png" alt="Marble Aroma Diffuser">
@@ -687,7 +642,33 @@
                         <span class="price-original">₹1,200</span>
                     </div>
                 </div>
-                <button class="btn-buy-card" onclick="selectProduct('Marble Aroma Diffuser')">Buy Now</button>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Aroma Diffuser')">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Products Collection -->
+    <section id="collection" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Complete Marble Collection</h2>
+            <div class="section-divider"></div>
+            <p class="section-desc">Browse our complete range of artisanal marble products.</p>
+        </div>
+
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <span class="badge-discount">Best Seller</span>
+                <img src="https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png" alt="Marble Aroma Diffuser">
+                <div>
+                    <h3 class="product-title">Marble Aroma Diffuser</h3>
+                    <p class="product-desc">Handcrafted marble essential oil diffuser with tea light warmer space.</p>
+                    <div class="price-wrap">
+                        <span class="price-current">₹699</span>
+                        <span class="price-original">₹1,200</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Aroma Diffuser')">Buy Now</button>
             </div>
 
             <!-- Product 2 -->
@@ -696,13 +677,13 @@
                 <img src="https://i.ibb.co/Nd9cZ3PZ/image-2.png" alt="Handcrafted Marble Jar">
                 <div>
                     <h3 class="product-title">Handcrafted Marble Jar</h3>
-                    <p class="product-desc">Finely polished white marble storage jar featuring natural stone grain patterns and snug-fit lid.</p>
+                    <p class="product-desc">Finely polished white marble storage jar featuring natural stone grain patterns.</p>
                     <div class="price-wrap">
                         <span class="price-current">₹599</span>
                         <span class="price-original">₹999</span>
                     </div>
                 </div>
-                <button class="btn-buy-card" onclick="selectProduct('Handcrafted Marble Jar')">Buy Now</button>
+                <button class="btn-buy-card" onclick="openOrderModal('Handcrafted Marble Jar')">Buy Now</button>
             </div>
 
             <!-- Product 3 -->
@@ -711,13 +692,13 @@
                 <img src="https://i.ibb.co/N6vNL3jd/1772187211766-2.jpg" alt="Marble Decorative Tray">
                 <div>
                     <h3 class="product-title">Marble Decorative Tray</h3>
-                    <p class="product-desc">Exquisite solid marble carved centerpiece tray designed for luxury living rooms, vanity, or premium gifting.</p>
+                    <p class="product-desc">Exquisite solid marble carved centerpiece tray designed for luxury living rooms.</p>
                     <div class="price-wrap">
                         <span class="price-current">₹5,200</span>
                         <span class="price-original">₹7,500</span>
                     </div>
                 </div>
-                <button class="btn-buy-card" onclick="selectProduct('Marble Decorative Tray')">Buy Now</button>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Decorative Tray')">Buy Now</button>
             </div>
 
             <!-- Product 4 -->
@@ -726,38 +707,37 @@
                 <img src="https://i.ibb.co/8LBvrYXC/marble-cracker-dish.webp" alt="Marble Cracker Dish">
                 <div>
                     <h3 class="product-title">Marble Cracker Dish</h3>
-                    <p class="product-desc">Minimalist carved marble serving platter ideal for dry fruits, snacks, and elegant dining settings.</p>
+                    <p class="product-desc">Minimalist carved marble serving platter ideal for dry fruits and snacks.</p>
                     <div class="price-wrap">
                         <span class="price-current">₹850</span>
                         <span class="price-original">₹1,350</span>
                     </div>
                 </div>
-                <button class="btn-buy-card" onclick="selectProduct('Marble Cracker Dish')">Buy Now</button>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Cracker Dish')">Buy Now</button>
             </div>
         </div>
     </section>
 
-    <!-- Order & Payment Section -->
-    <section id="order" class="section">
-        <div class="section-header">
-            <h2 class="section-title">Place Your Order</h2>
-            <div class="section-divider"></div>
-            <p class="section-desc">Fill in details to place your order via WhatsApp & Email dispatch.</p>
-        </div>
+    <!-- Modal Popup Form (Only Opens When Buy Now Is Clicked) -->
+    <div id="orderModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeOrderModal()">&times;</span>
+            
+            <h3 style="font-family:'Playfair Display', serif; text-align:center; font-size:1.5rem; margin-bottom:15px; color:var(--primary);">
+                Complete Your Order
+            </h3>
 
-        <div class="order-wrapper">
             <!-- Payment UPI Box -->
             <div class="payment-box">
-                <h4 style="color: var(--primary); margin-bottom: 5px;">Advance / Full Payment via UPI</h4>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">GPay / PhonePe / Paytm / BHIM</p>
+                <h4 style="color: var(--primary); margin-bottom: 5px;">Payment Details (UPI)</h4>
                 <div class="upi-badge">UPI ID: 9636567813@upi</div>
-                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;">Payment karne ke baad screenshot neeche attach karein.</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">Payment karke screenshot attach karein.</p>
             </div>
 
             <form id="orderForm" enctype="multipart/form-data" onsubmit="handleOrderSubmit(event)">
                 <div class="form-group">
                     <label for="productName">Product Selected</label>
-                    <input type="text" id="productName" name="Product Name" placeholder="Click 'Buy Now' on any product above" required readonly style="background-color: #f0ede8;">
+                    <input type="text" id="productName" name="Product Name" required readonly style="background-color: #f0ede8;">
                 </div>
 
                 <div class="form-group">
@@ -781,13 +761,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="paymentProof">Upload Payment Screenshot (Will send to Email)</label>
+                    <label for="paymentProof">Upload Payment Screenshot (Optional)</label>
                     <input type="file" id="paymentProof" name="Payment Screenshot" accept="image/*">
                 </div>
 
                 <div class="form-group">
                     <label for="customerAddress">Shipping Address</label>
-                    <textarea id="customerAddress" name="Shipping Address" rows="4" placeholder="Full postal address with PIN code" required></textarea>
+                    <textarea id="customerAddress" name="Shipping Address" rows="3" placeholder="Full postal address with PIN code" required></textarea>
                 </div>
 
                 <button type="submit" class="btn-submit-order" id="submitBtn">
@@ -795,51 +775,7 @@
                 </button>
             </form>
         </div>
-    </section>
-
-    <!-- Order Cancellation Section -->
-    <section id="cancel" class="section">
-        <div class="section-header">
-            <h2 class="section-title">Order Cancellation</h2>
-            <div class="section-divider"></div>
-            <p class="section-desc">Need to cancel an existing order? Send a quick request below.</p>
-        </div>
-
-        <div class="cancel-wrapper">
-            <form onsubmit="handleCancelSubmit(event)">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" id="cancelName" placeholder="Name used while ordering" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Phone Number (WhatsApp)</label>
-                    <input type="tel" id="cancelPhone" placeholder="+91-XXXXX-XXXXX" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Product to Cancel</label>
-                    <select id="cancelProduct" required>
-                        <option value="">-- Select Product --</option>
-                        <option value="Marble Aroma Diffuser">Marble Aroma Diffuser (₹699)</option>
-                        <option value="Handcrafted Marble Jar">Handcrafted Marble Jar (₹599)</option>
-                        <option value="Marble Decorative Tray">Marble Decorative Tray (₹5,200)</option>
-                        <option value="Marble Cracker Dish">Marble Cracker Dish (₹850)</option>
-                        <option value="Other / Multiple Items">Other / Multiple Items</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Reason for Cancellation</label>
-                    <textarea id="cancelReason" rows="3" placeholder="Reason for cancellation" required></textarea>
-                </div>
-
-                <button type="submit" class="btn-cancel-submit">
-                    Request Order Cancellation
-                </button>
-            </form>
-        </div>
-    </section>
+    </div>
 
     <!-- Trust Features Bar -->
     <div class="trust-bar">
@@ -863,27 +799,28 @@
         </div>
     </div>
 
-    <!-- Contact & Footer -->
+    <!-- Contact & Workshop Location -->
     <footer id="contact">
         <div class="footer-container">
             <div class="footer-col">
                 <h3>The Indian Stone Art</h3>
                 <p>We craft timeless marble handicrafts preserving the traditional stone artistry of Rajasthan.</p>
             </div>
+
             <div class="footer-col">
-                <h3>Quick Links</h3>
-                <a href="#home">Home</a>
-                <a href="#about">Heritage Story</a>
-                <a href="#collection">Product Collection</a>
-                <a href="#order">Order Form</a>
-                <a href="#cancel">Cancel Order</a>
-            </div>
-            <div class="footer-col">
-                <h3>Workshop & Contact</h3>
-                <p>📍 Main Market Road, Chandrawati, Rajasthan, India</p>
+                <h3>Workshop Address & Timing</h3>
+                <p>📍 Ambaji Industrial Ar., Palanpur Highway, Abu Road, Rajasthan, 307026</p>
                 <p>📞 Phone: +91-963-656-7813</p>
                 <p>✉️ Email: theindianstoneart@gmail.com</p>
-                <p>🕒 Mon - Sat: 9:00 AM - 7:00 PM</p>
+                <p>🕒 Mon - Sun: 9:00 AM - 7:00 PM</p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Workshop Location</h3>
+                <!-- Embedded Google Map -->
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14545.185293294862!2d72.78!3d24.48!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395cda3655555555%3A0x1!2sAbu%20Road%2C%20Rajasthan%20307026!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
         </div>
 
@@ -897,25 +834,36 @@
         💬
     </a>
 
-    <!-- JavaScript Logic -->
-   <!-- Script Section (Replace this at the bottom of index.html) -->
+    <!-- JavaScript Modal & Submission Logic -->
     <script>
-        function selectProduct(itemName) {
+        function openOrderModal(itemName) {
             document.getElementById('productName').value = itemName;
-            document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('orderModal').style.display = 'flex';
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        // Close modal when user clicks outside the modal box
+        window.onclick = function(event) {
+            var modal = document.getElementById('orderModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
         }
 
         async function handleOrderSubmit(event) {
             event.preventDefault();
             
             var btn = document.getElementById('submitBtn');
-            btn.innerText = "Uploading Photo & Processing...";
+            btn.innerText = "Processing Order...";
             btn.disabled = true;
 
             var fileInput = document.getElementById('paymentProof');
             let photoLink = "No photo attached";
 
-            // 1. Upload photo to image server automatically
+            // 1. Automatic Photo Upload to ImgBB
             if (fileInput.files.length > 0) {
                 try {
                     let formData = new FormData();
@@ -934,7 +882,7 @@
                 }
             }
 
-            // 2. Send details + Direct Photo Link to Email
+            // 2. Dispatch email summary via FormSubmit
             var product = document.getElementById('productName').value;
             var quantity = document.getElementById('quantity').value;
             var name = document.getElementById('customerName').value;
@@ -958,7 +906,7 @@
                 });
             } catch(e) {}
 
-            // 3. Open WhatsApp with Photo Link included in message
+            // 3. Open WhatsApp pre-filled order
             var message = "*New Order - The Indian Stone Art*%0A%0A" +
                 "*Product:* " + encodeURIComponent(product) + "%0A" +
                 "*Quantity:* " + encodeURIComponent(quantity) + "%0A" +
@@ -971,25 +919,8 @@
             btn.innerText = "Submit Order & Send on WhatsApp";
             btn.disabled = false;
 
+            closeOrderModal();
             window.open("https://api.whatsapp.com/send?phone=919636567813&text=" + message, '_blank');
-        }
-
-        function handleCancelSubmit(event) {
-            event.preventDefault();
-            
-            var name = document.getElementById('cancelName').value;
-            var phone = document.getElementById('cancelPhone').value;
-            var product = document.getElementById('cancelProduct').value;
-            var reason = document.getElementById('cancelReason').value;
-
-            var message = "*ORDER CANCELLATION REQUEST*%0A%0A" +
-                "*Customer Name:* " + encodeURIComponent(name) + "%0A" +
-                "*Phone:* " + encodeURIComponent(phone) + "%0A" +
-                "*Product:* " + encodeURIComponent(product) + "%0A" +
-                "*Reason:* " + encodeURIComponent(reason);
-
-            var whatsappURL = "https://api.whatsapp.com/send?phone=919636567813&text=" + message;
-            window.open(whatsappURL, '_blank');
         }
     </script>
 </body>
