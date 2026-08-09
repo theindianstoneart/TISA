@@ -35,6 +35,7 @@
             background-color: var(--bg-body);
             color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Top Announcement Bar */
@@ -163,70 +164,70 @@
             gap: 6px;
         }
 
-        /* Hero Banner Section */
-        .hero {
+        /* Hero Auto-Slider Section */
+        .hero-slider {
             position: relative;
             height: 70vh;
-            background: url('https://i.ibb.co/7NRbNnLx/Chat-GPT-Image-Jun-2-2025-09-29-04-AM.png') center/cover no-repeat;
+            width: 100%;
+            background-color: #1f1b18;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .slide-content {
             text-align: center;
             color: #ffffff;
-            padding: 0 20px;
+            z-index: 2;
         }
 
-        .hero-content {
-            max-width: 800px;
-        }
-
-        .hero-subtitle {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: #ffd700;
-            margin-bottom: 12px;
-            font-weight: 700;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
-        }
-
-        .hero h1 {
+        .slide-content h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.2rem;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            font-weight: 700;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-        }
-
-        .hero p {
-            font-size: 1.1rem;
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
             color: #ffffff;
-            margin-bottom: 30px;
-            font-weight: 500;
-            text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
         }
 
-        .btn-primary {
+        .btn-slide {
             background-color: var(--accent);
             color: #ffffff;
-            padding: 14px 36px;
-            text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 1.5px;
+            padding: 15px 40px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            border-radius: 2px;
-            display: inline-block;
-            transition: all 0.3s;
+            letter-spacing: 2px;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            border-radius: 3px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
         }
 
-        .btn-primary:hover {
-            background-color: var(--primary);
-            color: var(--accent);
+        .btn-slide:hover {
+            background-color: #ffffff;
+            color: var(--primary);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.3);
         }
 
         /* Section Layout */
@@ -260,7 +261,7 @@
             font-size: 0.95rem;
         }
 
-        /* General Product Grid (3+ items per row) */
+        /* General Product Grid */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -323,7 +324,6 @@
             margin-bottom: 8px;
         }
 
-        /* Product Description & See More logic */
         .product-desc {
             font-size: 0.85rem;
             color: var(--text-muted);
@@ -398,7 +398,7 @@
             background-color: var(--accent);
         }
 
-        /* Modal Overlay for Popup Order Form */
+        /* Modal Overlay */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -611,7 +611,7 @@
 
         @media (max-width: 768px) {
             .header-container { flex-direction: column; gap: 15px; }
-            .hero h1 { font-size: 2.2rem; }
+            .slide-content h2 { font-size: 2.2rem; }
             nav { gap: 20px; }
             .masterpiece-grid { grid-template-columns: 1fr; }
         }
@@ -650,14 +650,49 @@
         </div>
     </header>
 
-    <!-- Hero Banner (Clear Image) -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-subtitle">Handcrafted In Rajasthan</div>
-            <h1>Timeless Elegance Carved In Pure Marble</h1>
-            <p>Discover luxurious marble masterpieces, handcrafted jars, and traditional decorative showpieces for sophisticated spaces.</p>
-            <a href="#collection" class="btn-primary">Explore Featured Collection</a>
+    <!-- Hero Auto-Slider Section -->
+    <section id="home" class="hero-slider">
+        
+        <!-- Slide 1 (Hourglass Lamp) -->
+        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://i.ibb.co/x88zm7Ym/IMG-20250315-183028194-1.jpg');">
+            <div class="slide-content">
+                <h2>Hourglass Marble Lamp</h2>
+                <button class="btn-slide" onclick="openOrderModal('Hourglass Shape Marble Lamp')">Order Now</button>
+            </div>
         </div>
+        
+        <!-- Slide 2 (Pooja Thali) -->
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://i.ibb.co/21TqSK8V/1778139888040-2.jpg');">
+            <div class="slide-content">
+                <h2>Marble Pooja Thali</h2>
+                <button class="btn-slide" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Order Now</button>
+            </div>
+        </div>
+
+        <!-- Slide 3 (Decorative Tray) -->
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://i.ibb.co/0yxHfVNr/1772187211766-2.jpg');">
+            <div class="slide-content">
+                <h2>Marble Decorative Tray</h2>
+                <button class="btn-slide" onclick="openOrderModal('Marble Decorative Tray')">Order Now</button>
+            </div>
+        </div>
+        
+        <!-- Slide 4 (Aroma Diffuser) -->
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png');">
+            <div class="slide-content">
+                <h2>Marble Aroma Diffuser</h2>
+                <button class="btn-slide" onclick="openOrderModal('Marble Aroma Diffuser')">Order Now</button>
+            </div>
+        </div>
+        
+        <!-- Slide 5 (Holy Kalash) -->
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://i.ibb.co/xtHCqZ39/1000244483.png');">
+            <div class="slide-content">
+                <h2>Marble Holy Kalash</h2>
+                <button class="btn-slide" onclick="openOrderModal('Marble Holy Kalash')">Order Now</button>
+            </div>
+        </div>
+
     </section>
 
     <!-- Premium Featured Products (Masterpieces Section - 2 Per Row) -->
@@ -668,9 +703,26 @@
             <p class="section-desc">Our flagship handcrafted stone creations.</p>
         </div>
 
-        <!-- Masterpiece Grid strictly limited to 2 items per line -->
         <div class="masterpiece-grid">
-            <!-- Premium Product 1 (Updated Pooja Thali) -->
+            
+            <!-- Premium Product 1 (Hourglass Lamp) -->
+            <div class="product-card">
+                <span class="badge-discount">Hot Item</span>
+                <img src="https://i.ibb.co/x88zm7Ym/IMG-20250315-183028194-1.jpg" alt="Hourglass Shape Marble Lamp">
+                <div>
+                    <h3 class="product-title">Hourglass Shape Marble Lamp</h3>
+                    <p class="product-desc" id="desc-m0">Elegant handcrafted marble lamp carved in a beautiful hourglass shape. Perfect for providing soothing ambient lighting and adding a royal touch to your luxury decor spaces.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-m0', this)">See More</span>
+                    
+                    <div class="price-wrap">
+                        <span class="price-current">₹1,299</span>
+                        <span class="price-original">₹2,499</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="openOrderModal('Hourglass Shape Marble Lamp')">Buy Now</button>
+            </div>
+            
+            <!-- Premium Product 2 (Pooja Thali) -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
                 <img src="https://i.ibb.co/21TqSK8V/1778139888040-2.jpg" alt="Marble Pooja Thali">
@@ -687,27 +739,10 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Buy Now</button>
             </div>
 
-            <!-- Premium Product 2 (Updated Diya Set) -->
-            <div class="product-card">
-                <span class="badge-discount">Hot Item</span>
-                <img src="https://i.ibb.co/7NRbNnLx/Chat-GPT-Image-Jun-2-2025-09-29-04-AM.png" alt="Marble Diya Set">
-                <div>
-                    <h3 class="product-title">Marble Diya Set (6 Pcs)</h3>
-                    <p class="product-desc" id="desc-m2">Luxury set of 6 carved marble diyas for royal home decor and festive lighting. Each diya is intricately carved and measures exactly 2.5X2.5X0.75 inches.</p>
-                    <span class="see-more-btn" onclick="toggleDesc('desc-m2', this)">See More</span>
-
-                    <div class="price-wrap">
-                        <span class="price-current">₹899</span>
-                        <span class="price-original">₹1,599</span>
-                    </div>
-                </div>
-                <button class="btn-buy-card" onclick="openOrderModal('Marble Diya Set (6 Pcs)')">Buy Now</button>
-            </div>
-
             <!-- Premium Product 3 (Decorative Tray) -->
             <div class="product-card">
                 <span class="badge-discount">Signature Edition</span>
-                <img src="https://i.ibb.co/N6vNL3jd/1772187211766-2.jpg" alt="Marble Decorative Tray">
+                <img src="https://i.ibb.co/0yxHfVNr/1772187211766-2.jpg" alt="Marble Decorative Tray">
                 <div>
                     <h3 class="product-title">Marble Decorative Tray</h3>
                     <p class="product-desc" id="desc-m3">Exquisite solid marble carved centerpiece tray designed for luxury living rooms, vanity displays, or premium gifting. Generous Size: 12X12X1.5 inches.</p>
@@ -733,7 +768,25 @@
         </div>
 
         <div class="products-grid">
-            <!-- Product 1 (Updated Pooja Thali) -->
+            
+            <!-- Product 0 (Hourglass Lamp) -->
+            <div class="product-card">
+                <span class="badge-discount">Hot Item</span>
+                <img src="https://i.ibb.co/x88zm7Ym/IMG-20250315-183028194-1.jpg" alt="Hourglass Shape Marble Lamp">
+                <div>
+                    <h3 class="product-title">Hourglass Shape Marble Lamp</h3>
+                    <p class="product-desc" id="desc-c0">Elegant handcrafted marble lamp carved in a beautiful hourglass shape. Perfect for providing soothing ambient lighting and adding a royal touch to your luxury decor spaces.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c0', this)">See More</span>
+                    
+                    <div class="price-wrap">
+                        <span class="price-current">₹1,299</span>
+                        <span class="price-original">₹2,499</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="openOrderModal('Hourglass Shape Marble Lamp')">Buy Now</button>
+            </div>
+            
+            <!-- Product 1 (Pooja Thali) -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
                 <img src="https://i.ibb.co/21TqSK8V/1778139888040-2.jpg" alt="Marble Pooja Thali">
@@ -750,24 +803,7 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Buy Now</button>
             </div>
 
-            <!-- Product 2 (Updated Diya Set) -->
-            <div class="product-card">
-                <span class="badge-discount">Hot Item</span>
-                <img src="https://i.ibb.co/7NRbNnLx/Chat-GPT-Image-Jun-2-2025-09-29-04-AM.png" alt="Marble Diya Set">
-                <div>
-                    <h3 class="product-title">Marble Diya Set (6 Pcs)</h3>
-                    <p class="product-desc" id="desc-c2">Luxury set of 6 carved marble diyas for royal home decor and festive lighting. Each diya is intricately carved and measures exactly 2.5X2.5X0.75 inches.</p>
-                    <span class="see-more-btn" onclick="toggleDesc('desc-c2', this)">See More</span>
-
-                    <div class="price-wrap">
-                        <span class="price-current">₹899</span>
-                        <span class="price-original">₹1,599</span>
-                    </div>
-                </div>
-                <button class="btn-buy-card" onclick="openOrderModal('Marble Diya Set (6 Pcs)')">Buy Now</button>
-            </div>
-
-            <!-- Product 3 (Holy Kalash) -->
+            <!-- Product 2 (Holy Kalash) -->
             <div class="product-card">
                 <span class="badge-discount">New Arrival</span>
                 <img src="https://i.ibb.co/xtHCqZ39/1000244483.png" alt="Marble Holy Kalash">
@@ -784,7 +820,7 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Holy Kalash')">Buy Now</button>
             </div>
 
-            <!-- Product 4 (Aroma Diffuser with size) -->
+            <!-- Product 3 (Aroma Diffuser) -->
             <div class="product-card">
                 <span class="badge-discount">Best Seller</span>
                 <img src="https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png" alt="Marble Aroma Diffuser">
@@ -801,7 +837,7 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Aroma Diffuser')">Buy Now</button>
             </div>
 
-            <!-- Product 5 (Marble Jar with size) -->
+            <!-- Product 4 (Marble Jar) -->
             <div class="product-card">
                 <span class="badge-discount">Popular</span>
                 <img src="https://i.ibb.co/Nd9cZ3PZ/image-2.png" alt="Handcrafted Marble Jar">
@@ -818,10 +854,10 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Handcrafted Marble Jar')">Buy Now</button>
             </div>
 
-            <!-- Product 6 (Decorative Tray in Collection) -->
+            <!-- Product 5 (Decorative Tray) -->
             <div class="product-card">
                 <span class="badge-discount">Royal Craft</span>
-                <img src="https://i.ibb.co/N6vNL3jd/1772187211766-2.jpg" alt="Marble Decorative Tray">
+                <img src="https://i.ibb.co/0yxHfVNr/1772187211766-2.jpg" alt="Marble Decorative Tray">
                 <div>
                     <h3 class="product-title">Marble Decorative Tray</h3>
                     <p class="product-desc" id="desc-c6">Exquisite solid marble carved centerpiece tray designed for luxury living rooms, vanity displays, or premium gifting. Generous Size: 12X12X1.5 inches.</p>
@@ -835,7 +871,7 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Decorative Tray')">Buy Now</button>
             </div>
 
-            <!-- Product 7 -->
+            <!-- Product 6 (Cracker Dish) -->
             <div class="product-card">
                 <span class="badge-discount">Minimalist</span>
                 <img src="https://i.ibb.co/8LBvrYXC/marble-cracker-dish.webp" alt="Marble Cracker Dish">
@@ -891,7 +927,6 @@
                     <input type="tel" id="customerPhone" name="Customer Phone" placeholder="+91-XXXXX-XXXXX" required>
                 </div>
 
-                <!-- Mandatory Transaction Ref Field -->
                 <div class="form-group">
                     <label for="paymentRef">UPI Transaction ID / Ref No. / UTR Number <span style="color:red;">*</span></label>
                     <input type="text" id="paymentRef" name="UPI Transaction ID" placeholder="12-digit UTR No. (Required)" required>
@@ -949,7 +984,6 @@
 
             <div class="footer-col">
                 <h3>Workshop Location</h3>
-                <!-- Embedded Google Map -->
                 <div class="map-container">
                     <iframe src="https://maps.google.com/maps?q=The%20Indian%20Stone%20Art%2C%20Ambaji%20Industrial%20Ar.%2C%20Palanpur%20Highway%2C%20Abu%20Road%2C%20Rajasthan%20307026&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
                 </div>
@@ -961,14 +995,22 @@
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Widget Button -->
-    <a href="https://api.whatsapp.com/send?phone=919636567813" target="_blank" class="float-wa" title="Chat on WhatsApp">
-        💬
-    </a>
+    <a href="https://api.whatsapp.com/send?phone=919636567813" target="_blank" class="float-wa" title="Chat on WhatsApp">💬</a>
 
-    <!-- JavaScript Modal, 'See More' Toggle & Automated Message Logic -->
+    <!-- JavaScript Logic -->
     <script>
-        // Description 'See More' Toggle Logic
+        // Hero Slider Logic (Auto change every 5 seconds)
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        if(slides.length > 0) {
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 5000);
+        }
+
+        // 'See More' Description Toggle Logic
         function toggleDesc(id, btnElement) {
             var descElement = document.getElementById(id);
             if (descElement.classList.contains("expanded")) {
@@ -1012,7 +1054,6 @@
             var paymentRef = document.getElementById('paymentRef').value;
             var address = document.getElementById('customerAddress').value;
 
-            // 1. Dispatch email summary via FormSubmit
             try {
                 await fetch("https://formsubmit.co/ajax/theindianstoneart@gmail.com", {
                     method: "POST",
@@ -1028,7 +1069,6 @@
                 });
             } catch(e) {}
 
-            // 2. Pre-filled WhatsApp message including order confirmation status and cancellation policy notes
             var message = "*NEW ORDER REQUEST - The Indian Stone Art*%0A%0A" +
                 "*Product:* " + encodeURIComponent(product) + "%0A" +
                 "*Quantity:* " + encodeURIComponent(quantity) + "%0A" +
