@@ -6,7 +6,7 @@
     <title>The Indian Stone Art | Luxury Marble Handicrafts</title>
     
     <!-- Favicon -->
-    <link rel="icon" href="https://i.ibb.co/Nd9cZ3PZ/image-2.png" type="image/png">
+    <link rel="icon" href="https://i.ibb.co/8gx6bsJP/Black-trans.png" type="image/png">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -80,11 +80,10 @@
         }
 
         .brand-logo img {
-            height: 48px;
-            width: 48px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid var(--accent);
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+            /* Border aur border-radius hata diya gaya hai */
         }
 
         .brand-name {
@@ -167,11 +166,11 @@
             gap: 6px;
         }
 
-        /* Hero Banner Section */
+        /* Hero Banner Section (Clear Image - No Blur/Gradient Overlay) */
         .hero {
             position: relative;
             height: 70vh;
-            background: linear-gradient(rgba(31, 27, 24, 0.55), rgba(31, 27, 24, 0.7)), url('https://i.ibb.co/7NRbNnLx/Chat-GPT-Image-Jun-2-2025-09-29-04-AM.png') center/cover no-repeat;
+            background: url('https://i.ibb.co/7NRbNnLx/Chat-GPT-Image-Jun-2-2025-09-29-04-AM.png') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -184,13 +183,15 @@
             max-width: 800px;
         }
 
+        /* Added Text Shadow to make text readable on the clear image */
         .hero-subtitle {
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 4px;
-            color: var(--accent);
+            color: #ffd700;
             margin-bottom: 12px;
-            font-weight: 600;
+            font-weight: 700;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
         }
 
         .hero h1 {
@@ -199,13 +200,15 @@
             line-height: 1.2;
             margin-bottom: 20px;
             font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
         }
 
         .hero p {
             font-size: 1.1rem;
-            color: #e5dfd8;
+            color: #ffffff;
             margin-bottom: 30px;
-            font-weight: 300;
+            font-weight: 500;
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
         }
 
         .btn-primary {
@@ -222,6 +225,7 @@
             transition: all 0.3s;
             border: none;
             cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
         }
 
         .btn-primary:hover {
@@ -596,7 +600,7 @@
     <header>
         <div class="header-container">
             <a href="#home" class="brand-logo">
-                <img src="https://i.ibb.co/Nd9cZ3PZ/image-2.png" alt="The Indian Stone Art Logo">
+                <img src="https://i.ibb.co/8gx6bsJP/Black-trans.png" alt="The Indian Stone Art Logo">
                 <div>
                     <span class="brand-name">The Indian Stone Art</span>
                     <span class="brand-tagline">ROYAL MARBLE HANDICRAFTS</span>
@@ -618,12 +622,12 @@
         </div>
     </header>
 
-    <!-- Hero Banner -->
+    <!-- Hero Banner (Clear Image) -->
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-subtitle">Handcrafted In Rajasthan</div>
             <h1>Timeless Elegance Carved In Pure Marble</h1>
-            <p>Discover luxurious marble diffusers, handcrafted jars, and traditional decorative showpieces for sophisticated spaces.</p>
+            <p>Discover luxurious marble masterpieces, handcrafted jars, and traditional decorative showpieces for sophisticated spaces.</p>
             <a href="#collection" class="btn-primary">Explore Featured Collection</a>
         </div>
     </section>
@@ -637,19 +641,19 @@
         </div>
 
         <div class="products-grid">
-            <!-- Premium Product 1 -->
+            <!-- Premium Product 1 (Updated Pooja Thali) -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
-                <img src="https://i.ibb.co/21TqSK8V/1778139888040-2.jpg" alt="Handcrafted Marble Artifact">
+                <img src="https://i.ibb.co/21TqSK8V/1778139888040-2.jpg" alt="Marble Pooja Thali">
                 <div>
-                    <h3 class="product-title">Carved Marble Diffuser</h3>
-                    <p class="product-desc">Exquisite hand-carved marble artifact with traditional lattice Jaali work.</p>
+                    <h3 class="product-title">Marble Pooja Thali 6 inch</h3>
+                    <p class="product-desc">Beautifully handcrafted 6-inch marble pooja thali featuring intricate design work, perfect for auspicious occasions and daily worship.</p>
                     <div class="price-wrap">
                         <span class="price-current">₹799</span>
                         <span class="price-original">₹1,499</span>
                     </div>
                 </div>
-                <button class="btn-buy-card" onclick="openOrderModal('Carved Marble Diffuser')">Buy Now</button>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Buy Now</button>
             </div>
 
             <!-- Premium Product 2 -->
@@ -681,21 +685,8 @@
                 </div>
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Decorative Tray')">Buy Now</button>
             </div>
-
-            <!-- Premium Product 4 -->
-            <div class="product-card">
-                <span class="badge-discount">Best Seller</span>
-                <img src="https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png" alt="Marble Aroma Diffuser">
-                <div>
-                    <h3 class="product-title">Marble Aroma Diffuser</h3>
-                    <p class="product-desc">Handcrafted marble essential oil diffuser with tea light warmer space. Perfect luxury home aroma accessory.</p>
-                    <div class="price-wrap">
-                        <span class="price-current">₹699</span>
-                        <span class="price-original">₹1,200</span>
-                    </div>
-                </div>
-                <button class="btn-buy-card" onclick="openOrderModal('Marble Aroma Diffuser')">Buy Now</button>
-            </div>
+            
+            <!-- Removed Aroma Diffuser from Masterpieces as requested -->
         </div>
     </section>
 
@@ -708,19 +699,19 @@
         </div>
 
         <div class="products-grid">
-            <!-- Product 1 -->
+            <!-- Product 1 (Updated Pooja Thali) -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
-                <img src="https://i.ibb.co/21TqSK8V/1778139888040-2.jpg" alt="Carved Marble Diffuser">
+                <img src="https://i.ibb.co/21TqSK8V/1778139888040-2.jpg" alt="Marble Pooja Thali">
                 <div>
-                    <h3 class="product-title">Carved Marble Diffuser</h3>
-                    <p class="product-desc">Exquisite hand-carved marble artifact with traditional lattice Jaali work.</p>
+                    <h3 class="product-title">Marble Pooja Thali 6 inch</h3>
+                    <p class="product-desc">Beautifully handcrafted 6-inch marble pooja thali featuring intricate design work, perfect for auspicious occasions and daily worship.</p>
                     <div class="price-wrap">
                         <span class="price-current">₹799</span>
                         <span class="price-original">₹1,499</span>
                     </div>
                 </div>
-                <button class="btn-buy-card" onclick="openOrderModal('Carved Marble Diffuser')">Buy Now</button>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Buy Now</button>
             </div>
 
             <!-- Product 2 -->
@@ -753,7 +744,7 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Handcrafted Small Marble Accessory')">Buy Now</button>
             </div>
 
-            <!-- Product 4 -->
+            <!-- Product 4 (Aroma Diffuser shifted here entirely) -->
             <div class="product-card">
                 <span class="badge-discount">Best Seller</span>
                 <img src="https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png" alt="Marble Aroma Diffuser">
