@@ -104,7 +104,7 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* Navigation Menu (Cleaned up) */
+        /* Navigation Menu */
         nav {
             display: flex;
             align-items: center;
@@ -448,18 +448,18 @@
             opacity: 0.9;
         }
 
-        /* Map & Location Section */
+        /* Map Container */
         .map-container {
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            margin-top: 25px;
+            margin-top: 15px;
         }
 
         .map-container iframe {
             width: 100%;
-            height: 350px;
+            height: 280px;
             border: 0;
         }
 
@@ -581,7 +581,6 @@
                 </div>
             </a>
 
-            <!-- Cleaned Navigation (Heritage, Order, Cancel removed) -->
             <nav>
                 <a href="#home">Home</a>
                 <a href="#collection">Collection</a>
@@ -606,7 +605,7 @@
         </div>
     </section>
 
-    <!-- Premium Featured Products (Home Page Highlights) -->
+    <!-- Premium Featured Products -->
     <section class="section">
         <div class="section-header">
             <h2 class="section-title">Premium Masterpieces</h2>
@@ -718,7 +717,7 @@
         </div>
     </section>
 
-    <!-- Modal Popup Form (Only Opens When Buy Now Is Clicked) -->
+    <!-- Modal Popup Order Form -->
     <div id="orderModal" class="modal-overlay">
         <div class="modal-content">
             <span class="modal-close" onclick="closeOrderModal()">&times;</span>
@@ -731,10 +730,10 @@
             <div class="payment-box">
                 <h4 style="color: var(--primary); margin-bottom: 5px;">Payment Details (UPI)</h4>
                 <div class="upi-badge">UPI ID: 9636567813@upi</div>
-                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">Payment karke screenshot attach karein.</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">Payment karne ke baad UTR/Transaction Ref ID neeche bharein.</p>
             </div>
 
-            <form id="orderForm" enctype="multipart/form-data" onsubmit="handleOrderSubmit(event)">
+            <form id="orderForm" onsubmit="handleOrderSubmit(event)">
                 <div class="form-group">
                     <label for="productName">Product Selected</label>
                     <input type="text" id="productName" name="Product Name" required readonly style="background-color: #f0ede8;">
@@ -755,14 +754,10 @@
                     <input type="tel" id="customerPhone" name="Customer Phone" placeholder="+91-XXXXX-XXXXX" required>
                 </div>
 
+                <!-- Mandatory Transaction Ref Field -->
                 <div class="form-group">
-                    <label for="paymentRef">UPI Transaction Ref ID (Optional)</label>
-                    <input type="text" id="paymentRef" name="UPI Transaction ID" placeholder="e.g. 123456789012">
-                </div>
-
-                <div class="form-group">
-                    <label for="paymentProof">Upload Payment Screenshot (Optional)</label>
-                    <input type="file" id="paymentProof" name="Payment Screenshot" accept="image/*">
+                    <label for="paymentRef">UPI Transaction ID / Ref No. / UTR Number <span style="color:red;">*</span></label>
+                    <input type="text" id="paymentRef" name="UPI Transaction ID" placeholder="12-digit UTR No. (Required)" required>
                 </div>
 
                 <div class="form-group">
@@ -817,9 +812,9 @@
 
             <div class="footer-col">
                 <h3>Workshop Location</h3>
-                <!-- Embedded Google Map -->
+                <!-- Embedded Google Map with Exact Pin for The Indian Stone Art, Abu Road -->
                 <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14545.185293294862!2d72.78!3d24.48!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395cda3655555555%3A0x1!2sAbu%20Road%2C%20Rajasthan%20307026!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://maps.google.com/maps?q=The%20Indian%20Stone%20Art%2C%20Ambaji%20Industrial%20Ar.%2C%20Palanpur%20Highway%2C%20Abu%20Road%2C%20Rajasthan%20307026&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
@@ -834,7 +829,7 @@
         💬
     </a>
 
-    <!-- JavaScript Modal & Submission Logic -->
+    <!-- JavaScript Modal & Automated Message Logic -->
     <script>
         function openOrderModal(itemName) {
             document.getElementById('productName').value = itemName;
@@ -845,7 +840,6 @@
             document.getElementById('orderModal').style.display = 'none';
         }
 
-        // Close modal when user clicks outside the modal box
         window.onclick = function(event) {
             var modal = document.getElementById('orderModal');
             if (event.target == modal) {
@@ -860,36 +854,14 @@
             btn.innerText = "Processing Order...";
             btn.disabled = true;
 
-            var fileInput = document.getElementById('paymentProof');
-            let photoLink = "No photo attached";
-
-            // 1. Automatic Photo Upload to ImgBB
-            if (fileInput.files.length > 0) {
-                try {
-                    let formData = new FormData();
-                    formData.append("image", fileInput.files[0]);
-
-                    let response = await fetch("https://api.imgbb.com/1/upload?key=630987119280d07525389650d0327f31", {
-                        method: "POST",
-                        body: formData
-                    });
-                    let result = await response.json();
-                    if (result.success) {
-                        photoLink = result.data.url;
-                    }
-                } catch(e) {
-                    photoLink = "Upload failed";
-                }
-            }
-
-            // 2. Dispatch email summary via FormSubmit
             var product = document.getElementById('productName').value;
             var quantity = document.getElementById('quantity').value;
             var name = document.getElementById('customerName').value;
             var phone = document.getElementById('customerPhone').value;
-            var paymentRef = document.getElementById('paymentRef').value || 'Pending';
+            var paymentRef = document.getElementById('paymentRef').value;
             var address = document.getElementById('customerAddress').value;
 
+            // 1. Dispatch email summary via FormSubmit
             try {
                 await fetch("https://formsubmit.co/ajax/theindianstoneart@gmail.com", {
                     method: "POST",
@@ -899,22 +871,25 @@
                         "Quantity": quantity,
                         "Customer Name": name,
                         "Phone": phone,
-                        "Payment Ref": paymentRef,
-                        "Payment Screenshot Link": photoLink,
+                        "Payment Ref ID": paymentRef,
                         "Shipping Address": address
                     })
                 });
             } catch(e) {}
 
-            // 3. Open WhatsApp pre-filled order
-            var message = "*New Order - The Indian Stone Art*%0A%0A" +
+            // 2. Pre-filled WhatsApp message including order confirmation status and cancellation policy notes
+            var message = "*NEW ORDER REQUEST - The Indian Stone Art*%0A%0A" +
                 "*Product:* " + encodeURIComponent(product) + "%0A" +
                 "*Quantity:* " + encodeURIComponent(quantity) + "%0A" +
-                "*Customer:* " + encodeURIComponent(name) + "%0A" +
+                "*Customer Name:* " + encodeURIComponent(name) + "%0A" +
                 "*Phone:* " + encodeURIComponent(phone) + "%0A" +
-                "*Payment Ref:* " + encodeURIComponent(paymentRef) + "%0A" +
-                "*Screenshot Link:* " + encodeURIComponent(photoLink) + "%0A" +
-                "*Address:* " + encodeURIComponent(address);
+                "*Payment Ref/UTR ID:* " + encodeURIComponent(paymentRef) + "%0A" +
+                "*Shipping Address:* " + encodeURIComponent(address) + "%0A%0A" +
+                "----------------------------------%0A" +
+                "ℹ️ *Order Confirmation & Tracking:*%0A" +
+                "Payment verify hone ke baad aapko confirmation message aur Tracking ID bhej di jayegi.%0A%0A" +
+                "⚠️ *Cancellation Policy:*%0A" +
+                "Aapka order 24-48 hours mein dispatch hoga. Agar order cancel karna ho, toh kripya dispatch hone se pehle request bhej dein.";
 
             btn.innerText = "Submit Order & Send on WhatsApp";
             btn.disabled = false;
