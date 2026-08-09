@@ -6,239 +6,966 @@
     <title>The Indian Stone Art | Luxury Marble Handicrafts</title>
     
     <!-- Favicon -->
-    <link rel="icon" href="https://i.ibb.co/1GSCyjT8/Black-trans.png" type="image/png">
+    <link rel="icon" href="https://i.ibb.co/Nd9cZ3PZ/image-2.png" type="image/png">
     
-    <!-- Premium Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #1a1512;
-            --accent: #c5a059; /* Royal Gold */
-            --bg-light: #fdfbf7;
+            --primary: #1f1b18;
+            --accent: #b8860b; /* Royal Antique Gold */
+            --accent-light: #f4ece1;
+            --bg-body: #faf8f5;
             --card-bg: #ffffff;
-            --text-dark: #2c2523;
-            --text-muted: #6e655f;
+            --text-dark: #2c2724;
+            --text-muted: #736b65;
+            --border-color: #e8e2d9;
+            --whatsapp-green: #25d366;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            background-color: var(--bg-light);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
             color: var(--text-dark);
+            line-height: 1.6;
         }
 
-        /* Luxury Header & Navigation */
-        header {
+        /* Top Announcement Bar */
+        .top-bar {
             background-color: var(--primary);
+            color: #d8cfc4;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 7px 15px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+        }
+        .top-bar span {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Main Header */
+        header {
+            background-color: #ffffff;
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid var(--accent);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--border-color);
         }
-        .nav-container {
-            max-width: 1200px;
+
+        .header-container {
+            max-width: 1250px;
             margin: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
+            padding: 1rem 1.5rem;
         }
+
         .brand-logo {
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: #fff;
+            color: var(--primary);
         }
+
         .brand-logo img {
-            height: 45px;
-            width: auto;
+            height: 48px;
+            width: 48px;
+            object-fit: cover;
             border-radius: 50%;
-            border: 1px solid var(--accent);
+            border: 2px solid var(--accent);
         }
-        .brand-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
-            letter-spacing: 2px;
-            color: #fff;
-        }
-        nav a {
-            color: #dcd6cd;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 0.85rem;
-            letter-spacing: 1.5px;
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--primary);
             text-transform: uppercase;
+        }
+
+        .brand-tagline {
+            display: block;
+            font-size: 0.65rem;
+            color: var(--accent);
+            letter-spacing: 2px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Navigation Menu */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: color 0.3s;
         }
+
         nav a:hover, nav a.active {
             color: var(--accent);
         }
 
-        /* Hero Banner */
-        .hero {
-            height: 80vh;
-            background: linear-gradient(rgba(26, 21, 18, 0.65), rgba(26, 21, 18, 0.65)), url('https://i.ibb.co/7NRbNnLx/Chat-GPT-Image-Jun-2-2025-09-29-04-AM.png') center/cover fixed;
+        .header-actions {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            gap: 15px;
+        }
+
+        .btn-header-wa {
+            background-color: #f0fdf4;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Hero Banner Section */
+        .hero {
+            position: relative;
+            height: 75vh;
+            background: linear-gradient(rgba(31, 27, 24, 0.55), rgba(31, 27, 24, 0.7)), url('https://i.ibb.co/7NRbNnLx/Chat-GPT-Image-Jun-2-2025-09-29-04-AM.png') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            color: #fff;
-            padding: 0 1rem;
+            color: #ffffff;
+            padding: 0 20px;
         }
-        .hero h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
             color: var(--accent);
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+            margin-bottom: 12px;
+            font-weight: 600;
         }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
         .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            letter-spacing: 1px;
-            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            color: #e5dfd8;
+            margin-bottom: 30px;
+            font-weight: 300;
         }
-        .cta-btn {
-            background: var(--accent);
-            color: var(--primary);
-            padding: 14px 32px;
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #ffffff;
+            padding: 14px 36px;
             text-decoration: none;
             font-weight: 600;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+            font-size: 0.85rem;
             border-radius: 2px;
+            display: inline-block;
             transition: all 0.3s;
-        }
-        .cta-btn:hover {
-            background: #fff;
-            color: var(--primary);
+            border: none;
+            cursor: pointer;
         }
 
-        /* Features / Value Grid */
-        .section {
-            max-width: 1200px;
-            margin: auto;
-            padding: 5rem 2rem;
+        .btn-primary:hover {
+            background-color: var(--primary);
+            color: var(--accent);
         }
-        .section-title {
+
+        /* Category Circle Badges (Natural Handicrafts Style) */
+        .categories-sec {
+            max-width: 1250px;
+            margin: -50px auto 50px;
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 20px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+        }
+
+        .cat-item {
             text-align: center;
-            font-family: 'Cinzel', serif;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .cat-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            object-fit: cover;
+            border: 2px solid var(--accent-light);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .cat-item:hover .cat-img {
+            transform: scale(1.08);
+            border-color: var(--accent);
+        }
+
+        .cat-item span {
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: block;
+        }
+
+        /* Section Layout */
+        .section {
+            max-width: 1250px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
             font-size: 2.2rem;
             color: var(--primary);
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            width: 80px;
-            height: 2px;
-            background: var(--accent);
-            display: block;
-            margin: 10px auto 0;
+            margin-bottom: 8px;
         }
 
-        .grid-3 {
+        .section-divider {
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent);
+            margin: 0 auto 12px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Product Cards Grid */
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
-        .card {
-            background: var(--card-bg);
-            border: 1px solid #eae5dd;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
-            transition: 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-        }
-        .card img {
-            width: 100%;
-            height: 260px;
-            object-fit: contain;
-            margin-bottom: 15px;
-        }
-        .card h3 {
-            font-family: 'Cinzel', serif;
-            color: var(--primary);
-        }
-        .price {
-            color: var(--accent);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin: 10px 0;
+
+        .product-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
         }
 
-        footer {
-            background: var(--primary);
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: var(--accent);
+        }
+
+        .badge-discount {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent);
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 2px;
+            text-transform: uppercase;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            background-color: #fafafa;
+            border-radius: 4px;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .product-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .price-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .price-current {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .price-original {
+            font-size: 0.95rem;
             color: #a39c94;
+            text-decoration: line-through;
+        }
+
+        .btn-buy-card {
+            background-color: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-buy-card:hover {
+            background-color: var(--accent);
+        }
+
+        /* Order & Payment Form Container */
+        .order-wrapper {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--accent);
+            border-radius: 8px;
+            padding: 40px;
+            max-width: 650px;
+            margin: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .payment-box {
+            background-color: var(--accent-light);
+            border: 1px dashed var(--accent);
+            padding: 20px;
+            border-radius: 6px;
             text-align: center;
-            padding: 2rem;
-            border-top: 1px solid #332b26;
+            margin-bottom: 25px;
+        }
+
+        .upi-badge {
+            background: #ffffff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: 700;
+            color: var(--primary);
+            border: 1px solid var(--border-color);
+            margin-top: 8px;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--primary);
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            background-color: #fdfdfd;
+        }
+
+        .btn-submit-order {
+            background-color: var(--whatsapp-green);
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: opacity 0.3s;
+        }
+
+        .btn-submit-order:hover {
+            opacity: 0.9;
+        }
+
+        /* Order Cancellation Box */
+        .cancel-wrapper {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-top: 4px solid #dc2626;
+            border-radius: 8px;
+            padding: 35px;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .btn-cancel-submit {
+            background-color: #dc2626;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Trust Badges / Features Bar */
+        .trust-bar {
+            background-color: #ffffff;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .trust-grid {
+            max-width: 1250px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .trust-item h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            color: var(--primary);
+        }
+
+        .trust-item p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: #b0a79e;
+            padding: 60px 20px 20px;
+        }
+
+        .footer-container {
+            max-width: 1250px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-family: 'Playfair Display', serif;
+            color: #ffffff;
+            margin-bottom: 18px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #b0a79e;
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1250px;
+            margin: auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        /* Floating WhatsApp Button */
+        .float-wa {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--whatsapp-green);
+            color: white;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 9999;
+            text-decoration: none;
+            font-size: 28px;
+        }
+
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; }
+            .hero h1 { font-size: 2.2rem; }
+            nav { flex-wrap: wrap; justify-content: center; gap: 15px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        ✨ Direct From Rajasthan Artisans | <span>100% Genuine Marble</span> | WhatsApp Order: <b>+91-963-656-7813</b>
+    </div>
+
+    <!-- Main Header -->
     <header>
-        <div class="nav-container">
-            <a href="index.html" class="brand-logo">
-                <!-- Replace with logo link -->
-                <img src="https://i.ibb.co/V0cfR2Z6/White-Trans.png" alt="Logo">
-                <span class="brand-title">THE INDIAN STONE ART</span>
+        <div class="header-container">
+            <a href="#home" class="brand-logo">
+                <img src="https://i.ibb.co/Nd9cZ3PZ/image-2.png" alt="The Indian Stone Art Logo">
+                <div>
+                    <span class="brand-name">The Indian Stone Art</span>
+                    <span class="brand-tagline">ROYAL MARBLE HANDICRAFTS</span>
+                </div>
             </a>
+
             <nav>
-                <a href="index.html" class="active">Home</a>
-                <a href="about.html">About Heritage</a>
-                <a href="collection.html">Catalog</a>
-                <a href="track.html">Track Order</a>
-                <a href="login.html" id="accountNav">Login</a>
+                <a href="#home">Home</a>
+                <a href="#about">Heritage</a>
+                <a href="#collection">Collection</a>
+                <a href="#order">Order Now</a>
+                <a href="#cancel">Cancel Order</a>
+                <a href="#contact">Contact</a>
             </nav>
+
+            <div class="header-actions">
+                <a href="https://api.whatsapp.com/send?phone=919636567813" target="_blank" class="btn-header-wa">
+                    💬 WhatsApp Us
+                </a>
+            </div>
         </div>
     </header>
 
-    <div class="hero">
-        <h1>Handcrafted Marble Elegance</h1>
-        <p>Royal Rajasthani Marble Handicrafts Sourced Directly From Master Craftsmen</p>
-        <a href="collection.html" class="cta-btn">Explore Collection</a>
+    <!-- Hero Banner -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">Handcrafted In Rajasthan</div>
+            <h1>Timeless Elegance Carved In Pure Marble</h1>
+            <p>Discover luxurious marble diffusers, handcrafted jars, and traditional decorative showpieces for sophisticated spaces.</p>
+            <a href="#collection" class="btn-primary">Explore Featured Collection</a>
+        </div>
+    </section>
+
+    <!-- Circular Category Badges (Natural Handicrafts Style) -->
+    <div class="categories-sec">
+        <div class="category-grid">
+            <a href="#collection" class="cat-item">
+                <img src="https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png" class="cat-img" alt="Aroma Diffusers">
+                <span>Diffusers</span>
+            </a>
+            <a href="#collection" class="cat-item">
+                <img src="https://i.ibb.co/Nd9cZ3PZ/image-2.png" class="cat-img" alt="Marble Jars">
+                <span>Marble Jars</span>
+            </a>
+            <a href="#collection" class="cat-item">
+                <img src="https://i.ibb.co/N6vNL3jd/1772187211766-2.jpg" class="cat-img" alt="Decorative Trays">
+                <span>Vanity Trays</span>
+            </a>
+            <a href="#collection" class="cat-item">
+                <img src="https://i.ibb.co/8LBvrYXC/marble-cracker-dish.webp" class="cat-img" alt="Cracker Dishes">
+                <span>Platters & Dishes</span>
+            </a>
+        </div>
     </div>
 
-    <div class="section">
-        <h2 class="section-title">Bestselling Masterpieces</h2>
-        <div class="grid-3">
-            <div class="card">
-                <img src="https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png" alt="Marble Diffuser">
-                <h3>Marble Diffuser</h3>
-                <p>Pure white Makrana marble essential oil diffuser with tea-light warmers.</p>
-                <div class="price">₹699</div>
-                <a href="collection.html" class="cta-btn" style="padding: 8px 16px; font-size: 0.8rem;">View Product</a>
+    <!-- About / Heritage Section -->
+    <section id="about" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Our Heritage & Craftsmanship</h2>
+            <div class="section-divider"></div>
+            <p class="section-desc">Preserving centuries-old traditional stone carving in Chandrawati, Rajasthan.</p>
+        </div>
+        <div style="max-width: 850px; margin: auto; text-align: center; color: var(--text-muted); font-size: 1rem; line-height: 1.8;">
+            Welcome to <b>The Indian Stone Art</b>. Every artifact in our gallery is carefully hand-carved from high-grade Rajasthan marble by skilled master artisans. We bring royal aesthetic heritage, precision carving, and natural stone durability directly from our workshop to your home.
+        </div>
+    </section>
+
+    <!-- Featured Collection -->
+    <section id="collection" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Featured Marble Collection</h2>
+            <div class="section-divider"></div>
+            <p class="section-desc">Explore our top handcrafted marble pieces ready for direct delivery.</p>
+        </div>
+
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <span class="badge-discount">Best Seller</span>
+                <img src="https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png" alt="Marble Aroma Diffuser">
+                <div>
+                    <h3 class="product-title">Marble Aroma Diffuser</h3>
+                    <p class="product-desc">Handcrafted marble essential oil diffuser with tea light warmer space. Perfect luxury home aroma accessory.</p>
+                    <div class="price-wrap">
+                        <span class="price-current">₹699</span>
+                        <span class="price-original">₹1,200</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="selectProduct('Marble Aroma Diffuser')">Buy Now</button>
             </div>
-            <div class="card">
-                <img src="https://i.ibb.co/Nd9cZ3PZ/image-2.png" alt="Marble Jar">
-                <h3>Marble Storage Jar</h3>
-                <p>Hand-carved premium marble jar with natural stone grain finish.</p>
-                <div class="price">₹599</div>
-                <a href="collection.html" class="cta-btn" style="padding: 8px 16px; font-size: 0.8rem;">View Product</a>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <span class="badge-discount">Hot Item</span>
+                <img src="https://i.ibb.co/Nd9cZ3PZ/image-2.png" alt="Handcrafted Marble Jar">
+                <div>
+                    <h3 class="product-title">Handcrafted Marble Jar</h3>
+                    <p class="product-desc">Finely polished white marble storage jar featuring natural stone grain patterns and snug-fit lid.</p>
+                    <div class="price-wrap">
+                        <span class="price-current">₹599</span>
+                        <span class="price-original">₹999</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="selectProduct('Handcrafted Marble Jar')">Buy Now</button>
             </div>
-            <div class="card">
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <span class="badge-discount">Royal Craft</span>
                 <img src="https://i.ibb.co/N6vNL3jd/1772187211766-2.jpg" alt="Marble Decorative Tray">
-                <h3>Marble Decorative Tray</h3>
-                <p>Luxurious carved vanity tray designed for home centerpieces.</p>
-                <div class="price">₹5,200</div>
-                <a href="collection.html" class="cta-btn" style="padding: 8px 16px; font-size: 0.8rem;">View Product</a>
+                <div>
+                    <h3 class="product-title">Marble Decorative Tray</h3>
+                    <p class="product-desc">Exquisite solid marble carved centerpiece tray designed for luxury living rooms, vanity, or premium gifting.</p>
+                    <div class="price-wrap">
+                        <span class="price-current">₹5,200</span>
+                        <span class="price-original">₹7,500</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="selectProduct('Marble Decorative Tray')">Buy Now</button>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <span class="badge-discount">New Arrival</span>
+                <img src="https://i.ibb.co/8LBvrYXC/marble-cracker-dish.webp" alt="Marble Cracker Dish">
+                <div>
+                    <h3 class="product-title">Marble Cracker Dish</h3>
+                    <p class="product-desc">Minimalist carved marble serving platter ideal for dry fruits, snacks, and elegant dining settings.</p>
+                    <div class="price-wrap">
+                        <span class="price-current">₹850</span>
+                        <span class="price-original">₹1,350</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="selectProduct('Marble Cracker Dish')">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order & Payment Section -->
+    <section id="order" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Place Your Order</h2>
+            <div class="section-divider"></div>
+            <p class="section-desc">Fill in details to place your order via WhatsApp & Email dispatch.</p>
+        </div>
+
+        <div class="order-wrapper">
+            <!-- Payment UPI Box -->
+            <div class="payment-box">
+                <h4 style="color: var(--primary); margin-bottom: 5px;">Advance / Full Payment via UPI</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">GPay / PhonePe / Paytm / BHIM</p>
+                <div class="upi-badge">UPI ID: 9636567813@upi</div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;">Payment karne ke baad screenshot neeche attach karein.</p>
+            </div>
+
+            <form id="orderForm" enctype="multipart/form-data" onsubmit="handleOrderSubmit(event)">
+                <div class="form-group">
+                    <label for="productName">Product Selected</label>
+                    <input type="text" id="productName" name="Product Name" placeholder="Click 'Buy Now' on any product above" required readonly style="background-color: #f0ede8;">
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" name="Quantity" min="1" value="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="customerName">Full Name</label>
+                    <input type="text" id="customerName" name="Customer Name" placeholder="Your Full Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="customerPhone">Phone Number (WhatsApp)</label>
+                    <input type="tel" id="customerPhone" name="Customer Phone" placeholder="+91-XXXXX-XXXXX" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="paymentRef">UPI Transaction Ref ID (Optional)</label>
+                    <input type="text" id="paymentRef" name="UPI Transaction ID" placeholder="e.g. 123456789012">
+                </div>
+
+                <div class="form-group">
+                    <label for="paymentProof">Upload Payment Screenshot (Will send to Email)</label>
+                    <input type="file" id="paymentProof" name="Payment Screenshot" accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label for="customerAddress">Shipping Address</label>
+                    <textarea id="customerAddress" name="Shipping Address" rows="4" placeholder="Full postal address with PIN code" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit-order" id="submitBtn">
+                    Submit Order & Send on WhatsApp
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Order Cancellation Section -->
+    <section id="cancel" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Order Cancellation</h2>
+            <div class="section-divider"></div>
+            <p class="section-desc">Need to cancel an existing order? Send a quick request below.</p>
+        </div>
+
+        <div class="cancel-wrapper">
+            <form onsubmit="handleCancelSubmit(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="cancelName" placeholder="Name used while ordering" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number (WhatsApp)</label>
+                    <input type="tel" id="cancelPhone" placeholder="+91-XXXXX-XXXXX" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Product to Cancel</label>
+                    <select id="cancelProduct" required>
+                        <option value="">-- Select Product --</option>
+                        <option value="Marble Aroma Diffuser">Marble Aroma Diffuser (₹699)</option>
+                        <option value="Handcrafted Marble Jar">Handcrafted Marble Jar (₹599)</option>
+                        <option value="Marble Decorative Tray">Marble Decorative Tray (₹5,200)</option>
+                        <option value="Marble Cracker Dish">Marble Cracker Dish (₹850)</option>
+                        <option value="Other / Multiple Items">Other / Multiple Items</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Reason for Cancellation</label>
+                    <textarea id="cancelReason" rows="3" placeholder="Reason for cancellation" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-cancel-submit">
+                    Request Order Cancellation
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Trust Features Bar -->
+    <div class="trust-bar">
+        <div class="trust-grid">
+            <div class="trust-item">
+                <h4>Authentic Marble</h4>
+                <p>100% Genuine Rajasthan Stone</p>
+            </div>
+            <div class="trust-item">
+                <h4>Artisan Crafted</h4>
+                <p>Hand-carved by skilled artisans</p>
+            </div>
+            <div class="trust-item">
+                <h4>Safe Packaging</h4>
+                <p>Multi-layer shockproof packing</p>
+            </div>
+            <div class="trust-item">
+                <h4>Direct WhatsApp Support</h4>
+                <p>Personal assistance on every order</p>
             </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 The Indian Stone Art. Chandrawati, Rajasthan. All Rights Reserved.</p>
+    <!-- Contact & Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>The Indian Stone Art</h3>
+                <p>We craft timeless marble handicrafts preserving the traditional stone artistry of Rajasthan.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#about">Heritage Story</a>
+                <a href="#collection">Product Collection</a>
+                <a href="#order">Order Form</a>
+                <a href="#cancel">Cancel Order</a>
+            </div>
+            <div class="footer-col">
+                <h3>Workshop & Contact</h3>
+                <p>📍 Main Market Road, Chandrawati, Rajasthan, India</p>
+                <p>📞 Phone: +91-963-656-7813</p>
+                <p>✉️ Email: theindianstoneart@gmail.com</p>
+                <p>🕒 Mon - Sat: 9:00 AM - 7:00 PM</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Indian Stone Art. All Rights Reserved.</p>
+        </div>
     </footer>
 
+    <!-- Floating WhatsApp Widget Button -->
+    <a href="https://api.whatsapp.com/send?phone=919636567813" target="_blank" class="float-wa" title="Chat on WhatsApp">
+        💬
+    </a>
+
+    <!-- JavaScript Logic -->
+    <script>
+        function selectProduct(itemName) {
+            document.getElementById('productName').value = itemName;
+            document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function handleOrderSubmit(event) {
+            event.preventDefault();
+            
+            var btn = document.getElementById('submitBtn');
+            btn.innerText = "Processing Order...";
+            btn.disabled = true;
+
+            var form = document.getElementById('orderForm');
+            var formData = new FormData(form);
+
+            // Send Email Copy with Screenshot via FormSubmit
+            try {
+                await fetch("https://formsubmit.co/ajax/theindianstoneart@gmail.com", {
+                    method: "POST",
+                    body: formData
+                });
+            } catch(e) {
+                console.log("Email dispatch complete.");
+            }
+
+            // Prepare WhatsApp Order Payload
+            var product = document.getElementById('productName').value;
+            var quantity = document.getElementById('quantity').value;
+            var name = document.getElementById('customerName').value;
+            var phone = document.getElementById('customerPhone').value;
+            var paymentRef = document.getElementById('paymentRef').value || 'Pending / Not specified';
+            var address = document.getElementById('customerAddress').value;
+
+            var message = "*New Order - The Indian Stone Art*%0A%0A" +
+                "*Product:* " + encodeURIComponent(product) + "%0A" +
+                "*Quantity:* " + encodeURIComponent(quantity) + "%0A" +
+                "*Customer:* " + encodeURIComponent(name) + "%0A" +
+                "*Phone:* " + encodeURIComponent(phone) + "%0A" +
+                "*Payment Ref:* " + encodeURIComponent(paymentRef) + "%0A" +
+                "*Address:* " + encodeURIComponent(address) + "%0A%0A" +
+                "_(Payment screenshot sent to workshop email!)_";
+
+            var whatsappURL = "https://api.whatsapp.com/send?phone=919636567813&text=" + message;
+
+            btn.innerText = "Submit Order & Send on WhatsApp";
+            btn.disabled = false;
+
+            window.open(whatsappURL, '_blank');
+        }
+
+        function handleCancelSubmit(event) {
+            event.preventDefault();
+            
+            var name = document.getElementById('cancelName').value;
+            var phone = document.getElementById('cancelPhone').value;
+            var product = document.getElementById('cancelProduct').value;
+            var reason = document.getElementById('cancelReason').value;
+
+            var message = "*ORDER CANCELLATION REQUEST*%0A%0A" +
+                "*Customer Name:* " + encodeURIComponent(name) + "%0A" +
+                "*Phone:* " + encodeURIComponent(phone) + "%0A" +
+                "*Product:* " + encodeURIComponent(product) + "%0A" +
+                "*Reason:* " + encodeURIComponent(reason);
+
+            var whatsappURL = "https://api.whatsapp.com/send?phone=919636567813&text=" + message;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
 </body>
 </html>
