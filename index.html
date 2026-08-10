@@ -12,16 +12,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* LUXURY PARTIAL DARK THEME VARIABLES */
         :root {
-            --primary: #1f1b18;
-            --accent: #b8860b; 
-            --accent-light: #f4ece1;
-            --bg-body: #faf8f5;
-            --card-bg: #ffffff;
-            --text-dark: #2c2724;
-            --text-muted: #736b65;
-            --border-color: #e8e2d9;
+            --primary: #ffffff; /* White text for dark mode */
+            --accent: #d4af37; /* Bright Luxury Gold */
+            --accent-dark: #b8860b; /* Deep Antique Gold */
+            --bg-body: #151312; /* Deep Matte Charcoal/Brownish Black */
+            --card-bg: #1e1b19; /* Slightly lighter for product cards */
+            --text-dark: #f0ede8; /* Soft Off-white text */
+            --text-muted: #a39c94; /* Grey/Beige muted text */
+            --border-color: #36302b; /* Subtle dark border */
             --whatsapp-green: #25d366;
+            --header-bg: #0f0d0c; /* Extra dark header */
         }
 
         * {
@@ -40,26 +42,25 @@
 
         /* Top Announcement Bar */
         .top-bar {
-            background-color: var(--primary);
-            color: #d8cfc4;
+            background-color: var(--accent-dark);
+            color: #ffffff;
             font-size: 0.8rem;
             text-align: center;
             padding: 7px 15px;
-            letter-spacing: 1px;
-            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
-        .top-bar span {
-            color: var(--accent);
-            font-weight: 600;
+        .top-bar b {
+            font-weight: 700;
         }
 
         /* Main Header */
         header {
-            background-color: #ffffff;
+            background-color: var(--header-bg);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
             border-bottom: 1px solid var(--border-color);
         }
 
@@ -77,13 +78,13 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: var(--primary);
         }
 
         .brand-logo img {
             height: 55px;
             width: auto;
             object-fit: contain;
+            filter: brightness(0) invert(1); /* Makes the black logo white for dark theme */
         }
 
         .brand-name {
@@ -91,14 +92,14 @@
             font-size: 1.5rem;
             font-weight: 700;
             letter-spacing: 1px;
-            color: var(--primary);
+            color: var(--accent);
             text-transform: uppercase;
         }
 
         .brand-tagline {
             display: block;
             font-size: 0.65rem;
-            color: var(--accent);
+            color: var(--text-muted);
             letter-spacing: 1px;
             font-family: 'Plus Jakarta Sans', sans-serif;
             text-transform: uppercase;
@@ -130,13 +131,13 @@
             left: 50%;
             width: 0%;
             height: 2px;
-            background-color: var(--primary);
+            background-color: var(--accent);
             transition: all 0.3s ease-in-out;
             transform: translateX(-50%);
         }
 
         nav a:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
 
         nav a:hover::after {
@@ -150,9 +151,9 @@
         }
 
         .btn-header-wa {
-            background-color: #f0fdf4;
-            color: #15803d;
-            border: 1px solid #bbf7d0;
+            background-color: rgba(37, 211, 102, 0.1);
+            color: var(--whatsapp-green);
+            border: 1px solid var(--whatsapp-green);
             padding: 8px 14px;
             border-radius: 30px;
             font-size: 0.8rem;
@@ -161,14 +162,20 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            transition: all 0.3s;
+        }
+        
+        .btn-header-wa:hover {
+            background-color: var(--whatsapp-green);
+            color: #ffffff;
         }
 
-        /* Perfect Split-Layout Hero Slider for Square Images */
+        /* Split-Layout Hero Slider */
         .hero-slider {
             position: relative;
             height: 75vh;
             width: 100%;
-            background: radial-gradient(circle at center, #ffffff 0%, #f4ece1 100%);
+            background: radial-gradient(circle at center, #24201c 0%, #151312 100%);
             overflow: hidden;
             border-bottom: 1px solid var(--border-color);
         }
@@ -234,8 +241,8 @@
         }
 
         .btn-slide {
-            background-color: var(--primary);
-            color: #ffffff;
+            background-color: var(--accent);
+            color: #151312; /* Dark text on gold button */
             padding: 16px 45px;
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 0.95rem;
@@ -246,13 +253,13 @@
             cursor: pointer;
             border-radius: 3px;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
         .btn-slide:hover {
-            background-color: var(--accent);
+            background-color: #ffffff;
             transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(184, 134, 11, 0.3);
+            box-shadow: 0 15px 25px rgba(212, 175, 55, 0.4);
         }
 
         .slide-image-wrapper {
@@ -271,12 +278,11 @@
             transform: translateX(0);
         }
 
-        /* Prevents image stretch and keeps it beautifully contained */
         .slide-img {
             max-height: 100%;
             max-width: 100%;
             object-fit: contain;
-            filter: drop-shadow(0 25px 35px rgba(0,0,0,0.15));
+            filter: drop-shadow(0 25px 35px rgba(0,0,0,0.6));
             border-radius: 8px;
         }
 
@@ -311,14 +317,13 @@
             font-size: 0.95rem;
         }
 
-        /* General Product Grid */
+        /* Product Grids */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
-        /* Masterpiece Grid (Strictly 2 items per row) */
         .masterpiece-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -327,10 +332,11 @@
             margin: auto;
         }
 
+        /* Product Card Dark Theme */
         .product-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 8px;
             padding: 20px;
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             display: flex;
@@ -347,7 +353,7 @@
             left: -100%;
             width: 50%;
             height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(212, 175, 55, 0.15) 50%, rgba(255,255,255,0) 100%);
             transform: skewX(-25deg);
             transition: all 0.7s ease;
             z-index: 10;
@@ -360,32 +366,36 @@
 
         .product-card:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 45px rgba(0,0,0,0.12), 0 0 0 1px rgba(184, 134, 11, 0.15);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5), 0 0 0 1px rgba(212, 175, 55, 0.3);
             border-color: transparent;
         }
 
         .badge-discount {
             position: absolute;
-            top: 15px;
-            left: 15px;
+            top: 25px;
+            left: 25px;
             background-color: var(--accent);
-            color: #ffffff;
+            color: #151312;
             font-size: 0.7rem;
-            font-weight: 700;
-            padding: 4px 8px;
+            font-weight: 800;
+            padding: 4px 10px;
             border-radius: 2px;
             text-transform: uppercase;
             z-index: 5;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
+        /* The Image Area: Soft beige background so white images look like they are on a pedestal */
         .product-card img {
             width: 100%;
             height: 240px;
             object-fit: contain;
             margin-bottom: 15px;
-            background-color: #fafafa;
+            background-color: #f9f6f0; 
+            padding: 10px;
             border-radius: 4px;
             transition: transform 0.4s ease;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
         }
 
         .product-title {
@@ -428,7 +438,7 @@
         }
 
         .see-more-btn:hover {
-            color: var(--primary);
+            color: #ffffff;
             text-decoration: underline;
         }
 
@@ -443,22 +453,22 @@
         .price-current {
             font-size: 1.3rem;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--accent);
         }
 
         .price-original {
             font-size: 0.95rem;
-            color: #a39c94;
+            color: #6a635c;
             text-decoration: line-through;
         }
 
         .btn-buy-card {
             background-color: var(--primary);
-            color: #ffffff;
+            color: #151312;
             border: none;
             padding: 12px;
             width: 100%;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.85rem;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -471,16 +481,18 @@
 
         .btn-buy-card:hover {
             background-color: var(--accent);
+            color: #151312;
         }
 
-        /* Modal Overlay */
+        /* Modal Overlay Dark Theme */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
             display: none;
             justify-content: center;
             align-items: center;
@@ -490,7 +502,7 @@
         }
 
         .modal-content {
-            background: #ffffff;
+            background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-top: 4px solid var(--accent);
             border-radius: 8px;
@@ -498,7 +510,7 @@
             max-width: 550px;
             width: 100%;
             position: relative;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
             max-height: 90vh;
             overflow-y: auto;
         }
@@ -514,11 +526,11 @@
         }
 
         .modal-close:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
 
         .payment-box {
-            background-color: var(--accent-light);
+            background-color: rgba(212, 175, 55, 0.05);
             border: 1px dashed var(--accent);
             padding: 15px;
             border-radius: 6px;
@@ -527,13 +539,13 @@
         }
 
         .upi-badge {
-            background: #ffffff;
+            background: var(--bg-body);
             padding: 6px 14px;
             border-radius: 4px;
             display: inline-block;
             font-weight: 700;
-            color: var(--primary);
-            border: 1px solid var(--border-color);
+            color: var(--accent);
+            border: 1px solid var(--accent);
             margin-top: 5px;
             font-size: 1rem;
         }
@@ -547,7 +559,7 @@
             font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 5px;
-            color: var(--primary);
+            color: var(--text-dark);
         }
 
         .form-group input, .form-group textarea {
@@ -557,6 +569,13 @@
             border-radius: 4px;
             font-family: inherit;
             font-size: 0.9rem;
+            background-color: #26221f;
+            color: #ffffff;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
         }
 
         .btn-submit-order {
@@ -580,22 +599,9 @@
             opacity: 0.9;
         }
 
-        .map-container {
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            margin-top: 15px;
-        }
-
-        .map-container iframe {
-            width: 100%;
-            height: 280px;
-            border: 0;
-        }
-
+        /* Trust Badges */
         .trust-bar {
-            background-color: #ffffff;
+            background-color: var(--card-bg);
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
             padding: 40px 20px;
@@ -623,10 +629,12 @@
             color: var(--text-muted);
         }
 
+        /* Footer */
         footer {
-            background-color: var(--primary);
+            background-color: var(--header-bg);
             color: #b0a79e;
             padding: 60px 20px 20px;
+            border-top: 1px solid var(--border-color);
         }
 
         .footer-container {
@@ -640,7 +648,7 @@
 
         .footer-col h3 {
             font-family: 'Playfair Display', serif;
-            color: #ffffff;
+            color: var(--accent);
             margin-bottom: 18px;
             font-size: 1.2rem;
         }
@@ -654,14 +662,28 @@
         }
 
         .footer-col a:hover {
-            color: var(--accent);
+            color: var(--primary);
+        }
+
+        .map-container {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 200px;
+            border: 0;
+            filter: invert(90%) hue-rotate(180deg); /* Dark mode map trick */
         }
 
         .footer-bottom {
             max-width: 1250px;
             margin: auto;
             padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid var(--border-color);
             text-align: center;
             font-size: 0.8rem;
         }
@@ -678,13 +700,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             z-index: 9999;
             text-decoration: none;
             font-size: 28px;
         }
 
-        /* Mobile View Adjustments */
         @media (max-width: 768px) {
             .header-container { flex-direction: column; gap: 15px; }
             nav { gap: 20px; }
@@ -707,7 +728,7 @@
 
     <!-- Top Announcement Bar -->
     <div class="top-bar">
-        ✨ Direct From Rajasthan Artisans | <span>100% Genuine Marble</span> | WhatsApp Order: <b>+91-963-656-7813</b>
+        ✨ Direct From Rajasthan Artisans | <b>100% Genuine Marble</b> | WhatsApp Order: <b>+91-963-656-7813</b>
     </div>
 
     <!-- Main Header -->
@@ -820,7 +841,6 @@
 
         <div class="masterpiece-grid">
             
-            <!-- Premium Product 1 (Hourglass Lamp) -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
                 <img src="https://i.ibb.co/x88zm7Ym/IMG-20250315-183028194-1.jpg" alt="Hourglass Shape Marble Lamp">
@@ -837,7 +857,6 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Hourglass Shape Marble Lamp')">Buy Now</button>
             </div>
             
-            <!-- Premium Product 2 (Pooja Thali) -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
                 <img src="https://i.ibb.co/21TqSK8V/1778139888040-2.jpg" alt="Marble Pooja Thali">
@@ -854,7 +873,6 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Buy Now</button>
             </div>
 
-            <!-- Premium Product 3 (Decorative Tray) -->
             <div class="product-card">
                 <span class="badge-discount">Signature Edition</span>
                 <img src="https://i.ibb.co/0yxHfVNr/1772187211766-2.jpg" alt="Marble Decorative Tray">
@@ -884,7 +902,6 @@
 
         <div class="products-grid">
             
-            <!-- Product 0 (Hourglass Lamp) -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
                 <img src="https://i.ibb.co/x88zm7Ym/IMG-20250315-183028194-1.jpg" alt="Hourglass Shape Marble Lamp">
@@ -901,7 +918,6 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Hourglass Shape Marble Lamp')">Buy Now</button>
             </div>
             
-            <!-- Product 1 (Pooja Thali) -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
                 <img src="https://i.ibb.co/21TqSK8V/1778139888040-2.jpg" alt="Marble Pooja Thali">
@@ -918,7 +934,6 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Buy Now</button>
             </div>
 
-            <!-- Product 2 (Holy Kalash) -->
             <div class="product-card">
                 <span class="badge-discount">New Arrival</span>
                 <img src="https://i.ibb.co/xtHCqZ39/1000244483.png" alt="Marble Holy Kalash">
@@ -935,7 +950,6 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Holy Kalash')">Buy Now</button>
             </div>
 
-            <!-- Product 3 (Aroma Diffuser) -->
             <div class="product-card">
                 <span class="badge-discount">Best Seller</span>
                 <img src="https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png" alt="Marble Aroma Diffuser">
@@ -952,7 +966,6 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Aroma Diffuser')">Buy Now</button>
             </div>
 
-            <!-- Product 4 (Marble Jar) -->
             <div class="product-card">
                 <span class="badge-discount">Popular</span>
                 <img src="https://i.ibb.co/Nd9cZ3PZ/image-2.png" alt="Handcrafted Marble Jar">
@@ -969,7 +982,6 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Handcrafted Marble Jar')">Buy Now</button>
             </div>
 
-            <!-- Product 5 (Decorative Tray) -->
             <div class="product-card">
                 <span class="badge-discount">Royal Craft</span>
                 <img src="https://i.ibb.co/0yxHfVNr/1772187211766-2.jpg" alt="Marble Decorative Tray">
@@ -986,7 +998,6 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Decorative Tray')">Buy Now</button>
             </div>
 
-            <!-- Product 6 (Cracker Dish) -->
             <div class="product-card">
                 <span class="badge-discount">Minimalist</span>
                 <img src="https://i.ibb.co/8LBvrYXC/marble-cracker-dish.webp" alt="Marble Cracker Dish">
@@ -1003,7 +1014,6 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Cracker Dish')">Buy Now</button>
             </div>
             
-            <!-- Product 7 (Diya Set) -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
                 <img src="https://i.ibb.co/7NRbNnLx/Chat-GPT-Image-Jun-2-2025-09-29-04-AM.png" alt="Marble Diya Set">
@@ -1040,7 +1050,7 @@
             <form id="orderForm" onsubmit="handleOrderSubmit(event)">
                 <div class="form-group">
                     <label for="productName">Product Selected</label>
-                    <input type="text" id="productName" name="Product Name" required readonly style="background-color: #f0ede8;">
+                    <input type="text" id="productName" name="Product Name" required readonly style="background-color: #1a1715; border-color: #36302b;">
                 </div>
 
                 <div class="form-group">
@@ -1059,7 +1069,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="paymentRef">UPI Transaction ID / Ref No. / UTR Number <span style="color:red;">*</span></label>
+                    <label for="paymentRef">UPI Transaction ID / Ref No. / UTR Number <span style="color:var(--accent);">*</span></label>
                     <input type="text" id="paymentRef" name="UPI Transaction ID" placeholder="12-digit UTR No. (Required)" required>
                 </div>
 
@@ -1116,6 +1126,7 @@
             <div class="footer-col">
                 <h3>Workshop Location</h3>
                 <div class="map-container">
+                    <!-- Map filter applied in CSS for dark mode matching -->
                     <iframe src="https://maps.google.com/maps?q=The%20Indian%20Stone%20Art%2C%20Ambaji%20Industrial%20Ar.%2C%20Palanpur%20Highway%2C%20Abu%20Road%2C%20Rajasthan%20307026&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
