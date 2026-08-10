@@ -15,7 +15,7 @@
         /* LIGHT LUXURY THEME VARIABLES */
         :root {
             --primary: #1f1b18;
-            --accent: #b8860b; /* Royal Antique Gold */
+            --accent: #b8860b; 
             --accent-light: #f4ece1;
             --bg-body: #faf8f5;
             --card-bg: #ffffff;
@@ -105,7 +105,7 @@
             text-transform: uppercase;
         }
 
-        /* Navigation Menu with Elegant Center-Expanding Underline */
+        /* Navigation Menu */
         nav {
             display: flex;
             align-items: center;
@@ -164,7 +164,7 @@
             gap: 6px;
         }
 
-        /* Light Theme Split-Layout Hero Slider */
+        /* Hero Slider */
         .hero-slider {
             position: relative;
             height: 75vh;
@@ -344,12 +344,12 @@
             gap: 30px;
         }
 
-        /* Masterpiece Grid (Bigger cards, fills side gaps) */
+        /* Masterpiece Grid */
         .masterpiece-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 40px;
-            max-width: 1150px; /* Increased from 900px */
+            max-width: 1150px;
             margin: auto;
         }
 
@@ -404,7 +404,67 @@
             z-index: 5;
         }
 
-        .product-card img {
+        /* Product Image Carousel */
+        .card-carousel {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border-radius: 4px;
+            background-color: #fafafa;
+        }
+
+        .masterpiece-grid .card-carousel {
+            height: 320px;
+        }
+
+        .card-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            padding: 10px;
+        }
+
+        .card-slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .card-prev, .card-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            z-index: 5;
+            border-radius: 3px;
+            font-size: 1rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .card-carousel:hover .card-prev, .card-carousel:hover .card-next {
+            opacity: 1;
+        }
+
+        .card-prev { left: 5px; }
+        .card-next { right: 5px; }
+
+        .card-prev:hover, .card-next:hover {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Simple Img for cards without carousel */
+        .product-card > img {
             width: 100%;
             height: 240px;
             object-fit: contain;
@@ -412,11 +472,6 @@
             background-color: #fafafa;
             border-radius: 4px;
             transition: transform 0.4s ease;
-        }
-
-        /* Make masterpiece images taller */
-        .masterpiece-grid .product-card img {
-            height: 320px;
         }
 
         .product-title {
@@ -824,16 +879,16 @@
             </div>
         </div>
         
-        <!-- Slide 5 (Holy Kalash) -->
+        <!-- Slide 5 (Emerald Leaf Tray - REPLACED KALASH) -->
         <div class="slide">
             <div class="slide-inner">
                 <div class="slide-text">
-                    <h4>Traditional Craft</h4>
-                    <h2>Marble<br>Holy Kalash</h2>
-                    <button class="btn-slide" onclick="openOrderModal('Marble Holy Kalash')">Order Now</button>
+                    <h4>Kesariya Ji Green Marble</h4>
+                    <h2>Emerald Leaf<br>Marble Tray</h2>
+                    <button class="btn-slide" onclick="openOrderModal('Verdant Emerald Leaf Marble Tray')">Order Now</button>
                 </div>
                 <div class="slide-image-wrapper">
-                    <img src="https://i.ibb.co/xtHCqZ39/1000244483.png" alt="Holy Kalash" class="slide-img">
+                    <img src="https://i.ibb.co/qFRyDC9q/1772187810594-1.png" alt="Emerald Leaf Tray" class="slide-img">
                 </div>
             </div>
         </div>
@@ -858,9 +913,17 @@
 
         <div class="masterpiece-grid">
             
+            <!-- Product: Hourglass Lamp -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
-                <img src="https://i.ibb.co/x88zm7Ym/IMG-20250315-183028194-1.jpg" alt="Hourglass Shape Marble Lamp">
+                <div class="card-carousel" id="carousel-lamp-m">
+                    <img src="https://i.ibb.co/x88zm7Ym/IMG-20250315-183028194-1.jpg" class="card-slide active" alt="Lamp">
+                    <img src="https://i.ibb.co/Fbmg74Yn/IMG-20250315-173126435-HDR-1.jpg" class="card-slide" alt="Lamp">
+                    <img src="https://i.ibb.co/GfMpsMQQ/IMG-20250315-183250339-MF-PORTRAIT-1.jpg" class="card-slide" alt="Lamp">
+                    <img src="https://i.ibb.co/BVt9RwRF/IMG-20250315-183321266-MF-PORTRAIT-1.jpg" class="card-slide" alt="Lamp">
+                    <button class="card-prev" onclick="prevCardSlide('carousel-lamp-m', event)">&#10094;</button>
+                    <button class="card-next" onclick="nextCardSlide('carousel-lamp-m', event)">&#10095;</button>
+                </div>
                 <div>
                     <h3 class="product-title">Hourglass Shape Marble Lamp</h3>
                     <p class="product-desc" id="desc-m0">Elegant handcrafted marble lamp carved in a beautiful hourglass shape. Perfect for providing soothing ambient lighting and adding a royal touch to your luxury decor spaces.</p>
@@ -874,9 +937,15 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Hourglass Shape Marble Lamp')">Buy Now</button>
             </div>
             
+            <!-- Product: Pooja Thali -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
-                <img src="https://i.ibb.co/21TqSK8V/1778139888040-2.jpg" alt="Marble Pooja Thali">
+                <div class="card-carousel" id="carousel-thali-m">
+                    <img src="https://i.ibb.co/21TqSK8V/1778139888040-2.jpg" class="card-slide active" alt="Pooja Thali">
+                    <img src="https://i.ibb.co/Mk26mKGz/1778142105361-2.jpg" class="card-slide" alt="Pooja Thali">
+                    <button class="card-prev" onclick="prevCardSlide('carousel-thali-m', event)">&#10094;</button>
+                    <button class="card-next" onclick="nextCardSlide('carousel-thali-m', event)">&#10095;</button>
+                </div>
                 <div>
                     <h3 class="product-title">Marble Pooja Thali 6 inch</h3>
                     <p class="product-desc" id="desc-m1">Beautifully handcrafted 6-inch marble pooja thali featuring intricate design work, perfect for auspicious occasions and daily worship. Included components: 1 Plate (6X6X1 inches), 1 Kalash (2X2X2 inches), and 1 Diya (2.5X2.5X0.75 inches).</p>
@@ -890,9 +959,15 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Buy Now</button>
             </div>
 
+            <!-- Product: Decorative Tray -->
             <div class="product-card">
                 <span class="badge-discount">Signature Edition</span>
-                <img src="https://i.ibb.co/0yxHfVNr/1772187211766-2.jpg" alt="Marble Decorative Tray">
+                <div class="card-carousel" id="carousel-tray-m">
+                    <img src="https://i.ibb.co/0yxHfVNr/1772187211766-2.jpg" class="card-slide active" alt="Tray">
+                    <img src="https://i.ibb.co/p65DPbqK/1772187217457-2.jpg" class="card-slide" alt="Tray">
+                    <button class="card-prev" onclick="prevCardSlide('carousel-tray-m', event)">&#10094;</button>
+                    <button class="card-next" onclick="nextCardSlide('carousel-tray-m', event)">&#10095;</button>
+                </div>
                 <div>
                     <h3 class="product-title">Marble Decorative Tray</h3>
                     <p class="product-desc" id="desc-m3">Exquisite solid marble carved centerpiece tray designed for luxury living rooms, vanity displays, or premium gifting. Generous Size: 12X12X1.5 inches.</p>
@@ -904,6 +979,30 @@
                     </div>
                 </div>
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Decorative Tray')">Buy Now</button>
+            </div>
+
+            <!-- Product: NEW Verdant Emerald Leaf Tray -->
+            <div class="product-card">
+                <span class="badge-discount">Signature Edition</span>
+                <div class="card-carousel" id="carousel-green-m">
+                    <img src="https://i.ibb.co/qFRyDC9q/1772187810594-1.png" class="card-slide active" alt="Green Tray">
+                    <img src="https://i.ibb.co/399Hvtm8/1772187230977-1.png" class="card-slide" alt="Green Tray">
+                    <img src="https://i.ibb.co/vrFN2kn/1772187387817-1.png" class="card-slide" alt="Green Tray">
+                    <img src="https://i.ibb.co/fVH77bJ3/1772187653079-1.png" class="card-slide" alt="Green Tray">
+                    <button class="card-prev" onclick="prevCardSlide('carousel-green-m', event)">&#10094;</button>
+                    <button class="card-next" onclick="nextCardSlide('carousel-green-m', event)">&#10095;</button>
+                </div>
+                <div>
+                    <h3 class="product-title">Verdant Emerald Leaf Marble Tray</h3>
+                    <p class="product-desc" id="desc-m4">Handcrafted from authentic Rajasthan Kesariya Ji green marble, this exquisite leaf-shaped tray adds a royal, natural touch to your decor. Perfect for serving or as a beautiful centerpiece. Dimensions: 12X2X1.5 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-m4', this)">See More</span>
+
+                    <div class="price-wrap">
+                        <span class="price-current">₹5,200</span>
+                        <span class="price-original">₹7,500</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="openOrderModal('Verdant Emerald Leaf Marble Tray')">Buy Now</button>
             </div>
             
         </div>
@@ -921,7 +1020,14 @@
             
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
-                <img src="https://i.ibb.co/x88zm7Ym/IMG-20250315-183028194-1.jpg" alt="Hourglass Shape Marble Lamp">
+                <div class="card-carousel" id="carousel-lamp-c">
+                    <img src="https://i.ibb.co/x88zm7Ym/IMG-20250315-183028194-1.jpg" class="card-slide active" alt="Lamp">
+                    <img src="https://i.ibb.co/Fbmg74Yn/IMG-20250315-173126435-HDR-1.jpg" class="card-slide" alt="Lamp">
+                    <img src="https://i.ibb.co/GfMpsMQQ/IMG-20250315-183250339-MF-PORTRAIT-1.jpg" class="card-slide" alt="Lamp">
+                    <img src="https://i.ibb.co/BVt9RwRF/IMG-20250315-183321266-MF-PORTRAIT-1.jpg" class="card-slide" alt="Lamp">
+                    <button class="card-prev" onclick="prevCardSlide('carousel-lamp-c', event)">&#10094;</button>
+                    <button class="card-next" onclick="nextCardSlide('carousel-lamp-c', event)">&#10095;</button>
+                </div>
                 <div>
                     <h3 class="product-title">Hourglass Shape Marble Lamp</h3>
                     <p class="product-desc" id="desc-c0">Elegant handcrafted marble lamp carved in a beautiful hourglass shape. Perfect for providing soothing ambient lighting and adding a royal touch to your luxury decor spaces.</p>
@@ -937,7 +1043,12 @@
             
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
-                <img src="https://i.ibb.co/21TqSK8V/1778139888040-2.jpg" alt="Marble Pooja Thali">
+                <div class="card-carousel" id="carousel-thali-c">
+                    <img src="https://i.ibb.co/21TqSK8V/1778139888040-2.jpg" class="card-slide active" alt="Pooja Thali">
+                    <img src="https://i.ibb.co/Mk26mKGz/1778142105361-2.jpg" class="card-slide" alt="Pooja Thali">
+                    <button class="card-prev" onclick="prevCardSlide('carousel-thali-c', event)">&#10094;</button>
+                    <button class="card-next" onclick="nextCardSlide('carousel-thali-c', event)">&#10095;</button>
+                </div>
                 <div>
                     <h3 class="product-title">Marble Pooja Thali 6 inch</h3>
                     <p class="product-desc" id="desc-c1">Beautifully handcrafted 6-inch marble pooja thali featuring intricate design work, perfect for auspicious occasions and daily worship. Included components: 1 Plate (6X6X1 inches), 1 Kalash (2X2X2 inches), and 1 Diya (2.5X2.5X0.75 inches).</p>
@@ -949,6 +1060,30 @@
                     </div>
                 </div>
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Buy Now</button>
+            </div>
+
+            <!-- NEW Verdant Emerald Leaf Tray -->
+            <div class="product-card">
+                <span class="badge-discount">Signature Edition</span>
+                <div class="card-carousel" id="carousel-green-c">
+                    <img src="https://i.ibb.co/qFRyDC9q/1772187810594-1.png" class="card-slide active" alt="Green Tray">
+                    <img src="https://i.ibb.co/399Hvtm8/1772187230977-1.png" class="card-slide" alt="Green Tray">
+                    <img src="https://i.ibb.co/vrFN2kn/1772187387817-1.png" class="card-slide" alt="Green Tray">
+                    <img src="https://i.ibb.co/fVH77bJ3/1772187653079-1.png" class="card-slide" alt="Green Tray">
+                    <button class="card-prev" onclick="prevCardSlide('carousel-green-c', event)">&#10094;</button>
+                    <button class="card-next" onclick="nextCardSlide('carousel-green-c', event)">&#10095;</button>
+                </div>
+                <div>
+                    <h3 class="product-title">Verdant Emerald Leaf Marble Tray</h3>
+                    <p class="product-desc" id="desc-c9">Handcrafted from authentic Rajasthan Kesariya Ji green marble, this exquisite leaf-shaped tray adds a royal, natural touch to your decor. Perfect for serving or as a beautiful centerpiece. Dimensions: 12X2X1.5 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c9', this)">See More</span>
+
+                    <div class="price-wrap">
+                        <span class="price-current">₹5,200</span>
+                        <span class="price-original">₹7,500</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="openOrderModal('Verdant Emerald Leaf Marble Tray')">Buy Now</button>
             </div>
 
             <div class="product-card">
@@ -1001,7 +1136,12 @@
 
             <div class="product-card">
                 <span class="badge-discount">Royal Craft</span>
-                <img src="https://i.ibb.co/0yxHfVNr/1772187211766-2.jpg" alt="Marble Decorative Tray">
+                <div class="card-carousel" id="carousel-tray-c">
+                    <img src="https://i.ibb.co/0yxHfVNr/1772187211766-2.jpg" class="card-slide active" alt="Tray">
+                    <img src="https://i.ibb.co/p65DPbqK/1772187217457-2.jpg" class="card-slide" alt="Tray">
+                    <button class="card-prev" onclick="prevCardSlide('carousel-tray-c', event)">&#10094;</button>
+                    <button class="card-next" onclick="nextCardSlide('carousel-tray-c', event)">&#10095;</button>
+                </div>
                 <div>
                     <h3 class="product-title">Marble Decorative Tray</h3>
                     <p class="product-desc" id="desc-c6">Exquisite solid marble carved centerpiece tray designed for luxury living rooms, vanity displays, or premium gifting. Generous Size: 12X12X1.5 inches.</p>
@@ -1159,7 +1299,7 @@
     <script>
         // Hero Slider Logic with Pagination Dots
         let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
+        const slides = document.querySelectorAll('.hero-slider .slide');
         const dots = document.querySelectorAll('.dot');
         let slideInterval;
 
@@ -1190,14 +1330,34 @@
             sliderContainer.addEventListener('mouseenter', stopSlider);
             sliderContainer.addEventListener('mouseleave', startSlider);
             
-            // Add click functionality to dots
             dots.forEach((dot, index) => {
                 dot.addEventListener('click', () => {
                     goToSlide(index);
                     stopSlider();
-                    startSlider(); // Reset timer on click
+                    startSlider(); 
                 });
             });
+        }
+
+        // Product Card Image Carousel Logic
+        function nextCardSlide(carouselId, event) {
+            event.stopPropagation();
+            const carousel = document.getElementById(carouselId);
+            const cardSlides = carousel.querySelectorAll('.card-slide');
+            let activeIndex = Array.from(cardSlides).findIndex(s => s.classList.contains('active'));
+            cardSlides[activeIndex].classList.remove('active');
+            let nextIdx = (activeIndex + 1) % cardSlides.length;
+            cardSlides[nextIdx].classList.add('active');
+        }
+
+        function prevCardSlide(carouselId, event) {
+            event.stopPropagation();
+            const carousel = document.getElementById(carouselId);
+            const cardSlides = carousel.querySelectorAll('.card-slide');
+            let activeIndex = Array.from(cardSlides).findIndex(s => s.classList.contains('active'));
+            cardSlides[activeIndex].classList.remove('active');
+            let prevIdx = (activeIndex - 1 + cardSlides.length) % cardSlides.length;
+            cardSlides[prevIdx].classList.add('active');
         }
 
         // 'See More' Description Toggle Logic
