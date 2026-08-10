@@ -182,7 +182,7 @@
             height: 100%;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 1s ease-in-out, visibility 1s;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s;
             display: flex;
             align-items: center;
         }
@@ -208,7 +208,7 @@
             flex: 1;
             opacity: 0;
             transform: translateX(-30px);
-            transition: all 1s ease-out 0.3s;
+            transition: all 0.8s ease-out 0.2s;
         }
 
         .slide.active .slide-text {
@@ -264,7 +264,7 @@
             align-items: center;
             opacity: 0;
             transform: translateX(30px);
-            transition: all 1s ease-out 0.3s;
+            transition: all 0.8s ease-out 0.2s;
         }
 
         .slide.active .slide-image-wrapper {
@@ -280,30 +280,50 @@
             border-radius: 8px;
         }
 
-        /* Slideshow Indicator Dots */
+        /* Animated Progress Bars for Slideshow */
         .slider-dots {
             position: absolute;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 12px;
+            gap: 8px;
             z-index: 10;
         }
 
         .dot {
-            width: 10px;
-            height: 10px;
-            background-color: rgba(31, 27, 24, 0.2);
-            border-radius: 50%;
+            width: 45px;
+            height: 4px;
+            background-color: rgba(31, 27, 24, 0.15);
+            border-radius: 4px;
             cursor: pointer;
-            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .dot.active {
-            width: 35px;
-            border-radius: 10px;
+        .dot::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
             background-color: var(--accent);
+            border-radius: 4px;
+        }
+
+        .dot.active::after {
+            animation: progressFill 3s linear forwards;
+        }
+
+        /* Pause slider animation on hover */
+        .hero-slider:hover .dot.active::after {
+            animation-play-state: paused;
+        }
+
+        @keyframes progressFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
         }
 
         /* Section Layout */
@@ -630,7 +650,6 @@
             font-weight: 600;
         }
 
-        /* Google Icon colors */
         .g-icon {
             display: inline-block;
             font-weight: bold;
@@ -749,20 +768,18 @@
             opacity: 0.9;
         }
 
-        .map-container {
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            margin-top: 15px;
+        /* Policy Popup Specific Styling */
+        .policy-content p {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .policy-content strong {
+            color: var(--primary);
         }
 
-        .map-container iframe {
-            width: 100%;
-            height: 280px;
-            border: 0;
-        }
-
+        /* Trust Features Bar */
         .trust-bar {
             background-color: #ffffff;
             border-top: 1px solid var(--border-color);
@@ -1198,6 +1215,58 @@
                 </div>
                 <button class="btn-buy-card" onclick="openOrderModal('Verdant Emerald Leaf Marble Tray')">Buy Now</button>
             </div>
+            
+            <div class="product-card">
+                <span class="badge-discount">New Arrival</span>
+                <img src="https://i.ibb.co/WvrWfsCN/Chat-GPT-Image-Jun-2-2025-09-21-10-AM-20251228-112726-0000.png" alt="Condiment Serving Bowl">
+                <div>
+                    <h3 class="product-title">Marble Condiment Serving Bowl</h3>
+                    <p class="product-desc" id="desc-c-condiment">Elegantly crafted small marble bowl set, ideal for serving condiments, dips, or delicate spices during fine dining. Size: 2.5X2.5X0.75 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c-condiment', this)">See More</span>
+
+                    <div class="price-wrap">
+                        <span class="price-current">₹900</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Condiment Serving Bowl')">Buy Now</button>
+            </div>
+
+            <div class="product-card">
+                <span class="badge-discount">Elegant</span>
+                <img src="https://i.ibb.co/h6MkLQ8/Chat-GPT-Image-Jun-8-2026-10-37-11-PM.png" alt="Trinket Tray">
+                <div>
+                    <h3 class="product-title">Marble Trinket Tray</h3>
+                    <p class="product-desc" id="desc-c-trinket">A charming carved marble trinket tray to elegantly organize your rings, keys, and daily essentials. Size: 5X5X1 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c-trinket', this)">See More</span>
+
+                    <div class="price-wrap">
+                        <span class="price-current">₹549</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Trinket Tray')">Buy Now</button>
+            </div>
+
+            <div class="product-card">
+                <span class="badge-discount">New Arrival</span>
+                <div class="card-carousel" id="carousel-leaf-platter">
+                    <img src="https://i.ibb.co/CKQhn2RH/1780032541883.png" class="card-slide active" alt="Leaf Platter">
+                    <img src="https://i.ibb.co/XxdQCYSC/1780032562218.png" class="card-slide" alt="Leaf Platter">
+                    <img src="https://i.ibb.co/F90VJFf/1780037493823.png" class="card-slide" alt="Leaf Platter">
+                    <button class="card-prev" onclick="prevCardSlide('carousel-leaf-platter', event)">&#10094;</button>
+                    <button class="card-next" onclick="nextCardSlide('carousel-leaf-platter', event)">&#10095;</button>
+                </div>
+                <div>
+                    <h3 class="product-title">Square Leaf Marble Platter</h3>
+                    <p class="product-desc" id="desc-c-leafplatter">A distinctly crafted square platter with delicate leaf border motifs. Great for aesthetic arrangements or unique gifting. Size: 6X6X1 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c-leafplatter', this)">See More</span>
+
+                    <div class="price-wrap">
+                        <span class="price-current">₹599</span>
+                        <span class="price-original">₹899</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="openOrderModal('Square Leaf Marble Platter')">Buy Now</button>
+            </div>
 
             <div class="product-card">
                 <span class="badge-discount">New Arrival</span>
@@ -1269,19 +1338,24 @@
             </div>
 
             <div class="product-card">
-                <span class="badge-discount">Minimalist</span>
-                <img src="https://i.ibb.co/8LBvrYXC/marble-cracker-dish.webp" alt="Marble Cracker Dish">
+                <span class="badge-discount">Elegant Serving</span>
+                <div class="card-carousel" id="carousel-decobowl-c">
+                    <img src="https://i.ibb.co/8LBvrYXC/marble-cracker-dish.webp" class="card-slide active" alt="Decorative Bowl">
+                    <img src="https://i.ibb.co/qMHXhwRL/1772187190778.jpg" class="card-slide" alt="Decorative Bowl">
+                    <button class="card-prev" onclick="prevCardSlide('carousel-decobowl-c', event)">&#10094;</button>
+                    <button class="card-next" onclick="nextCardSlide('carousel-decobowl-c', event)">&#10095;</button>
+                </div>
                 <div>
-                    <h3 class="product-title">Marble Cracker Dish</h3>
-                    <p class="product-desc" id="desc-c7">Minimalist carved marble serving platter ideal for dry fruits and snacks. An elegant addition to any dining arrangement.</p>
-                    <span class="see-more-btn" onclick="toggleDesc('desc-c7', this)">See More</span>
+                    <h3 class="product-title">Marble Decorative Bowl</h3>
+                    <p class="product-desc" id="desc-c-decobowl">Minimalist carved marble serving platter/bowl ideal for dry fruits and snacks. An elegant addition to any dining arrangement.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c-decobowl', this)">See More</span>
 
                     <div class="price-wrap">
                         <span class="price-current">₹850</span>
                         <span class="price-original">₹1,350</span>
                     </div>
                 </div>
-                <button class="btn-buy-card" onclick="openOrderModal('Marble Cracker Dish')">Buy Now</button>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Decorative Bowl')">Buy Now</button>
             </div>
             
             <div class="product-card">
@@ -1302,7 +1376,7 @@
         </div>
     </section>
 
-    <!-- NEW: Patron Impressions (Google Reviews) Section -->
+    <!-- Patron Impressions (Google Reviews) Section -->
     <section class="testimonial-section">
         <div class="section-header">
             <h2 class="section-title">Patron Impressions</h2>
@@ -1311,7 +1385,6 @@
         </div>
 
         <div class="testimonial-grid">
-            
             <!-- Review 1 -->
             <div class="testi-card">
                 <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -1367,7 +1440,6 @@
             <div class="payment-box">
                 <h4 style="color: var(--primary); margin-bottom: 5px;">Payment Details (UPI)</h4>
                 <div class="upi-badge">UPI ID: 9636567813@upi</div>
-                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">Payment karne ke baad UTR/Transaction Ref ID neeche bharein.</p>
             </div>
 
             <form id="orderForm" onsubmit="handleOrderSubmit(event)">
@@ -1394,6 +1466,7 @@
                 <div class="form-group">
                     <label for="paymentRef">UPI Transaction ID / Ref No. / UTR Number <span style="color:red;">*</span></label>
                     <input type="text" id="paymentRef" name="UPI Transaction ID" placeholder="12-digit UTR No. (Required)" required>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 6px;">Please enter your UTR/Transaction Reference ID below after completing the payment.</p>
                 </div>
 
                 <div class="form-group">
@@ -1402,9 +1475,32 @@
                 </div>
 
                 <button type="submit" class="btn-submit-order" id="submitBtn">
-                    Submit Order & Send on WhatsApp
+                    Submit Order & View Policy
                 </button>
             </form>
+        </div>
+    </div>
+
+    <!-- POST-SUBMIT POLICY POPUP -->
+    <div id="policyPopup" class="modal-overlay">
+        <div class="modal-content" style="max-width: 500px; text-align: center;">
+            <span class="modal-close" onclick="closePolicyPopup()">&times;</span>
+            <h3 style="font-family:'Playfair Display', serif; font-size:1.8rem; color:var(--primary); margin-bottom:15px;">Order Policy</h3>
+            
+            <div style="background-color: var(--bg-body); padding: 20px; border-radius: 6px; text-align: left; border: 1px solid var(--border-color); margin-bottom: 20px;">
+                <p class="policy-content" style="font-size: 0.95rem; color: var(--text-dark); margin-bottom: 15px; line-height: 1.6;">
+                    <strong style="color: var(--primary);">📦 Dispatch Timeline:</strong><br>
+                    Orders are typically dispatched within <strong>24 to 48 hours</strong>. Please note that our dispatch operations are closed on Sundays and major public holidays.
+                </p>
+                <p class="policy-content" style="font-size: 0.95rem; color: var(--text-dark); line-height: 1.6;">
+                    <strong style="color: var(--primary);">🔄 Cancellation & Refund Policy:</strong><br>
+                    If you need to cancel your order, please notify us via WhatsApp <strong>before the item is dispatched</strong>. Orders cannot be cancelled once dispatched. For pre-paid orders cancelled on time, the refund will be initiated directly to your UPI account.
+                </p>
+            </div>
+
+            <button class="btn-submit-order" id="proceedWaBtn" onclick="proceedToWhatsApp()">
+                Acknowledge & Proceed to WhatsApp
+            </button>
         </div>
     </div>
 
@@ -1463,7 +1559,7 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // Hero Slider Logic with Pagination Dots
+        // Hero Slider Logic with Animated Progress Bars (3 seconds)
         let currentSlide = 0;
         const slides = document.querySelectorAll('.hero-slider .slide');
         const dots = document.querySelectorAll('.dot');
@@ -1472,6 +1568,10 @@
         function goToSlide(n) {
             slides[currentSlide].classList.remove('active');
             dots[currentSlide].classList.remove('active');
+            
+            // Re-trigger animation hack
+            void dots[currentSlide].offsetWidth; 
+            
             currentSlide = n;
             slides[currentSlide].classList.add('active');
             dots[currentSlide].classList.add('active');
@@ -1483,7 +1583,7 @@
         }
 
         function startSlider() {
-            slideInterval = setInterval(nextSlide, 5000);
+            slideInterval = setInterval(nextSlide, 3000);
         }
 
         function stopSlider() {
@@ -1548,19 +1648,30 @@
             document.getElementById('orderModal').style.display = 'none';
         }
 
+        function closePolicyPopup() {
+            document.getElementById('policyPopup').style.display = 'none';
+        }
+
         window.onclick = function(event) {
-            var modal = document.getElementById('orderModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
+            var orderModal = document.getElementById('orderModal');
+            var policyPopup = document.getElementById('policyPopup');
+            if (event.target == orderModal) {
+                orderModal.style.display = 'none';
+            }
+            if (event.target == policyPopup) {
+                policyPopup.style.display = 'none';
             }
         }
 
-        // Form Submit Logic
+        // Form Submit & Custom Policy Popup Logic
+        let orderDataToSubmit = {};
+        let waMessage = "";
+
         async function handleOrderSubmit(event) {
             event.preventDefault();
             
             var btn = document.getElementById('submitBtn');
-            btn.innerText = "Processing Order...";
+            btn.innerText = "Processing...";
             btn.disabled = true;
 
             var product = document.getElementById('productName').value;
@@ -1570,22 +1681,17 @@
             var paymentRef = document.getElementById('paymentRef').value;
             var address = document.getElementById('customerAddress').value;
 
-            try {
-                await fetch("https://formsubmit.co/ajax/theindianstoneart@gmail.com", {
-                    method: "POST",
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        "Product": product,
-                        "Quantity": quantity,
-                        "Customer Name": name,
-                        "Phone": phone,
-                        "Payment Ref ID": paymentRef,
-                        "Shipping Address": address
-                    })
-                });
-            } catch(e) {}
+            // Save data globally to use after popup acknowledgment 
+            orderDataToSubmit = {
+                "Product": product,
+                "Quantity": quantity,
+                "Customer Name": name,
+                "Phone": phone,
+                "Payment Ref ID": paymentRef,
+                "Shipping Address": address
+            };
 
-            var message = "*NEW ORDER REQUEST - The Indian Stone Art*%0A%0A" +
+            waMessage = "*NEW ORDER REQUEST - The Indian Stone Art*%0A%0A" +
                 "*Product:* " + encodeURIComponent(product) + "%0A" +
                 "*Quantity:* " + encodeURIComponent(quantity) + "%0A" +
                 "*Customer Name:* " + encodeURIComponent(name) + "%0A" +
@@ -1593,18 +1699,36 @@
                 "*Payment Ref/UTR ID:* " + encodeURIComponent(paymentRef) + "%0A" +
                 "*Shipping Address:* " + encodeURIComponent(address) + "%0A%0A" +
                 "----------------------------------%0A" +
-                "ℹ️ *Order Confirmation & Tracking:*%0A" +
-                "Payment verify hone ke baad aapko confirmation message aur Tracking ID bhej di jayegi.%0A%0A" +
-                "⚠️ *Order & Cancellation Policy:*%0A" +
-                "• Aapka order 24-48 hours mein dispatch hoga (Sunday aur festivals par dispatch band rehta hai).%0A" +
-                "• Agar order cancel karna ho, toh kripya dispatch hone se pehle WhatsApp par inform karein. Dispatch hone ke baad order cancel nahi hoga.%0A" +
-                "• Agar aapne payment kar diya hai, toh cancel hone par aapke paise UPI ke through wapas (refund) transfer kar diye jayenge.";
+                "ℹ️ *Status:* I have read and accepted the dispatch & cancellation policy on the website.";
 
-            btn.innerText = "Submit Order & Send on WhatsApp";
+            btn.innerText = "Submit Order & View Policy";
             btn.disabled = false;
 
+            // Close Order form and open Policy Popup
             closeOrderModal();
-            window.open("https://api.whatsapp.com/send?phone=919636567813&text=" + message, '_blank');
+            document.getElementById('policyPopup').style.display = 'flex';
+        }
+
+        async function proceedToWhatsApp() {
+            var btn = document.getElementById('proceedWaBtn');
+            btn.innerText = "Redirecting to WhatsApp...";
+            btn.disabled = true;
+
+            // Send silent email notification via FormSubmit
+            try {
+                await fetch("https://formsubmit.co/ajax/theindianstoneart@gmail.com", {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(orderDataToSubmit)
+                });
+            } catch(e) {}
+
+            btn.innerText = "Acknowledge & Proceed to WhatsApp";
+            btn.disabled = false;
+            
+            // Close popup and open WhatsApp tab
+            closePolicyPopup();
+            window.open("https://api.whatsapp.com/send?phone=919636567813&text=" + waMessage, '_blank');
         }
     </script>
 </body>
