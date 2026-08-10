@@ -14,7 +14,7 @@
     <style>
         :root {
             --primary: #1f1b18;
-            --accent: #b8860b; /* Royal Antique Gold */
+            --accent: #b8860b; 
             --accent-light: #f4ece1;
             --bg-body: #faf8f5;
             --card-bg: #ffffff;
@@ -99,11 +99,12 @@
             display: block;
             font-size: 0.65rem;
             color: var(--accent);
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             font-family: 'Plus Jakarta Sans', sans-serif;
+            text-transform: uppercase;
         }
 
-        /* Navigation Menu */
+        /* Navigation Menu with Elegant Center-Expanding Underline */
         nav {
             display: flex;
             align-items: center;
@@ -119,25 +120,23 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             padding: 6px 0;
-            transition: all 0.3s ease-in-out;
+            transition: color 0.3s ease-in-out;
         }
 
         nav a::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
+            left: 50%;
             width: 0%;
             height: 2px;
-            background: linear-gradient(90deg, var(--accent), #ffd700);
-            box-shadow: 0 0 8px var(--accent), 0 0 12px #ffd700;
-            transition: width 0.3s ease-in-out;
-            border-radius: 2px;
+            background-color: var(--primary);
+            transition: all 0.3s ease-in-out;
+            transform: translateX(-50%);
         }
 
         nav a:hover {
-            color: var(--accent);
-            text-shadow: 0 0 8px rgba(184, 134, 11, 0.6), 0 0 15px rgba(255, 215, 0, 0.4);
+            color: var(--primary);
         }
 
         nav a:hover::after {
@@ -164,10 +163,10 @@
             gap: 6px;
         }
 
-        /* Hero Auto-Slider Section */
+        /* Hero Auto-Slider (Luxury Blur & Zoom Animation) */
         .hero-slider {
             position: relative;
-            height: 70vh;
+            height: 75vh;
             width: 100%;
             background-color: #1f1b18;
             overflow: hidden;
@@ -179,55 +178,103 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-size: cover;
-            background-position: center;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            visibility: hidden;
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 1.2s;
         }
 
         .slide.active {
             opacity: 1;
+            visibility: visible;
             z-index: 1;
         }
 
-        .slide-content {
-            text-align: center;
-            color: #ffffff;
-            z-index: 2;
+        /* Deep blurred background from the same image */
+        .slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(35px) brightness(0.35);
+            transform: scale(1.2);
+            z-index: 0;
         }
 
-        .slide-content h2 {
+        /* Foreground Wrapper */
+        .slide-content-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* The actual product image with slow majestic zoom */
+        .slide-img {
+            height: 60%; 
+            max-width: 90%;
+            object-fit: contain;
+            filter: drop-shadow(0 25px 35px rgba(0,0,0,0.8));
+            transform: scale(0.85);
+            transition: transform 6s ease-out;
+        }
+
+        .slide.active .slide-img {
+            transform: scale(1.05); /* Slow Ken Burns effect */
+        }
+
+        /* Staggered text reveal */
+        .slide-text {
+            margin-top: 30px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease 0.5s, transform 0.8s ease 0.5s;
+        }
+
+        .slide.active .slide-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-text h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 25px;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            font-size: 3.2rem;
             color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
 
         .btn-slide {
             background-color: var(--accent);
             color: #ffffff;
-            padding: 15px 40px;
+            padding: 14px 38px;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
             border: none;
             cursor: pointer;
-            border-radius: 3px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border-radius: 2px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             transition: all 0.3s ease;
         }
 
         .btn-slide:hover {
             background-color: #ffffff;
             color: var(--primary);
-            box-shadow: 0 6px 20px rgba(255,255,255,0.3);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.2);
         }
 
         /* Section Layout */
@@ -261,38 +308,50 @@
             font-size: 0.95rem;
         }
 
-        /* General Product Grid */
+        /* Masterpiece & General Grid combined for full width */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
             gap: 30px;
         }
 
-        /* Masterpiece Grid (Strictly 2 items per row) */
-        .masterpiece-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            max-width: 900px;
-            margin: auto;
-        }
-
+        /* Product Card & Luxury Shine/Shadow Hover Effect */
         .product-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 6px;
             padding: 20px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
+            overflow: hidden; /* For shine effect */
+        }
+
+        /* Reflection Shine Effect */
+        .product-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: all 0.7s ease;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .product-card:hover::after {
+            left: 150%;
         }
 
         .product-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-            border-color: var(--accent);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.12), 0 0 0 1px rgba(184, 134, 11, 0.15);
+            border-color: transparent;
         }
 
         .badge-discount {
@@ -306,6 +365,7 @@
             padding: 4px 8px;
             border-radius: 2px;
             text-transform: uppercase;
+            z-index: 5;
         }
 
         .product-card img {
@@ -315,6 +375,7 @@
             margin-bottom: 15px;
             background-color: #fafafa;
             border-radius: 4px;
+            transition: transform 0.4s ease;
         }
 
         .product-title {
@@ -352,6 +413,8 @@
             margin-bottom: 15px;
             display: inline-block;
             transition: color 0.3s;
+            position: relative;
+            z-index: 15;
         }
 
         .see-more-btn:hover {
@@ -392,6 +455,8 @@
             border-radius: 3px;
             cursor: pointer;
             transition: background-color 0.3s;
+            position: relative;
+            z-index: 15;
         }
 
         .btn-buy-card:hover {
@@ -611,9 +676,9 @@
 
         @media (max-width: 768px) {
             .header-container { flex-direction: column; gap: 15px; }
-            .slide-content h2 { font-size: 2.2rem; }
+            .slide-text h2 { font-size: 2.2rem; }
             nav { gap: 20px; }
-            .masterpiece-grid { grid-template-columns: 1fr; }
+            .slide-img { max-width: 95%; height: auto; max-height: 50%; }
         }
     </style>
 </head>
@@ -631,11 +696,11 @@
                 <img src="https://i.ibb.co/8gx6bsJP/Black-trans.png" alt="The Indian Stone Art Logo">
                 <div>
                     <span class="brand-name">The Indian Stone Art</span>
-                    <span class="brand-tagline">ROYAL MARBLE HANDICRAFTS</span>
+                    <span class="brand-tagline">Bespoke Creation tailored to your vision</span>
                 </div>
             </a>
 
-            <!-- Navigation Menu with Neon & Underline Hover Effect -->
+            <!-- Clean Minimalist Navbar Hover -->
             <nav>
                 <a href="#home">Home</a>
                 <a href="#collection">Collection</a>
@@ -654,48 +719,68 @@
     <section id="home" class="hero-slider">
         
         <!-- Slide 1 (Hourglass Lamp) -->
-        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://i.ibb.co/x88zm7Ym/IMG-20250315-183028194-1.jpg');">
-            <div class="slide-content">
-                <h2>Hourglass Marble Lamp</h2>
-                <button class="btn-slide" onclick="openOrderModal('Hourglass Shape Marble Lamp')">Order Now</button>
+        <div class="slide active">
+            <div class="slide-bg" style="background-image: url('https://i.ibb.co/x88zm7Ym/IMG-20250315-183028194-1.jpg');"></div>
+            <div class="slide-content-wrapper">
+                <img src="https://i.ibb.co/x88zm7Ym/IMG-20250315-183028194-1.jpg" alt="Hourglass Lamp" class="slide-img">
+                <div class="slide-text">
+                    <h2>Hourglass Marble Lamp</h2>
+                    <button class="btn-slide" onclick="openOrderModal('Hourglass Shape Marble Lamp')">Order Now</button>
+                </div>
             </div>
         </div>
         
         <!-- Slide 2 (Pooja Thali) -->
-        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://i.ibb.co/21TqSK8V/1778139888040-2.jpg');">
-            <div class="slide-content">
-                <h2>Marble Pooja Thali</h2>
-                <button class="btn-slide" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Order Now</button>
+        <div class="slide">
+            <div class="slide-bg" style="background-image: url('https://i.ibb.co/21TqSK8V/1778139888040-2.jpg');"></div>
+            <div class="slide-content-wrapper">
+                <img src="https://i.ibb.co/21TqSK8V/1778139888040-2.jpg" alt="Pooja Thali" class="slide-img">
+                <div class="slide-text">
+                    <h2>Marble Pooja Thali</h2>
+                    <button class="btn-slide" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Order Now</button>
+                </div>
             </div>
         </div>
 
         <!-- Slide 3 (Decorative Tray) -->
-        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://i.ibb.co/0yxHfVNr/1772187211766-2.jpg');">
-            <div class="slide-content">
-                <h2>Marble Decorative Tray</h2>
-                <button class="btn-slide" onclick="openOrderModal('Marble Decorative Tray')">Order Now</button>
+        <div class="slide">
+            <div class="slide-bg" style="background-image: url('https://i.ibb.co/0yxHfVNr/1772187211766-2.jpg');"></div>
+            <div class="slide-content-wrapper">
+                <img src="https://i.ibb.co/0yxHfVNr/1772187211766-2.jpg" alt="Decorative Tray" class="slide-img">
+                <div class="slide-text">
+                    <h2>Marble Decorative Tray</h2>
+                    <button class="btn-slide" onclick="openOrderModal('Marble Decorative Tray')">Order Now</button>
+                </div>
             </div>
         </div>
         
         <!-- Slide 4 (Aroma Diffuser) -->
-        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png');">
-            <div class="slide-content">
-                <h2>Marble Aroma Diffuser</h2>
-                <button class="btn-slide" onclick="openOrderModal('Marble Aroma Diffuser')">Order Now</button>
+        <div class="slide">
+            <div class="slide-bg" style="background-image: url('https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png');"></div>
+            <div class="slide-content-wrapper">
+                <img src="https://i.ibb.co/bRjX7450/file-000000008fcc622fb4a34f7f307de971.png" alt="Aroma Diffuser" class="slide-img">
+                <div class="slide-text">
+                    <h2>Marble Aroma Diffuser</h2>
+                    <button class="btn-slide" onclick="openOrderModal('Marble Aroma Diffuser')">Order Now</button>
+                </div>
             </div>
         </div>
         
         <!-- Slide 5 (Holy Kalash) -->
-        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://i.ibb.co/xtHCqZ39/1000244483.png');">
-            <div class="slide-content">
-                <h2>Marble Holy Kalash</h2>
-                <button class="btn-slide" onclick="openOrderModal('Marble Holy Kalash')">Order Now</button>
+        <div class="slide">
+            <div class="slide-bg" style="background-image: url('https://i.ibb.co/xtHCqZ39/1000244483.png');"></div>
+            <div class="slide-content-wrapper">
+                <img src="https://i.ibb.co/xtHCqZ39/1000244483.png" alt="Holy Kalash" class="slide-img">
+                <div class="slide-text">
+                    <h2>Marble Holy Kalash</h2>
+                    <button class="btn-slide" onclick="openOrderModal('Marble Holy Kalash')">Order Now</button>
+                </div>
             </div>
         </div>
 
     </section>
 
-    <!-- Premium Featured Products (Masterpieces Section - 2 Per Row) -->
+    <!-- Premium Masterpieces Section -->
     <section class="section">
         <div class="section-header">
             <h2 class="section-title">Premium Masterpieces</h2>
@@ -703,7 +788,8 @@
             <p class="section-desc">Our flagship handcrafted stone creations.</p>
         </div>
 
-        <div class="masterpiece-grid">
+        <!-- Full width grid restored for premium display -->
+        <div class="products-grid">
             
             <!-- Premium Product 1 (Hourglass Lamp) -->
             <div class="product-card">
@@ -715,8 +801,8 @@
                     <span class="see-more-btn" onclick="toggleDesc('desc-m0', this)">See More</span>
                     
                     <div class="price-wrap">
-                        <span class="price-current">₹1,299</span>
-                        <span class="price-original">₹2,499</span>
+                        <span class="price-current">₹6,499</span>
+                        <span class="price-original">₹8,499</span>
                     </div>
                 </div>
                 <button class="btn-buy-card" onclick="openOrderModal('Hourglass Shape Marble Lamp')">Buy Now</button>
@@ -779,8 +865,8 @@
                     <span class="see-more-btn" onclick="toggleDesc('desc-c0', this)">See More</span>
                     
                     <div class="price-wrap">
-                        <span class="price-current">₹1,299</span>
-                        <span class="price-original">₹2,499</span>
+                        <span class="price-current">₹6,499</span>
+                        <span class="price-original">₹8,499</span>
                     </div>
                 </div>
                 <button class="btn-buy-card" onclick="openOrderModal('Hourglass Shape Marble Lamp')">Buy Now</button>
@@ -887,6 +973,23 @@
                 </div>
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Cracker Dish')">Buy Now</button>
             </div>
+            
+            <!-- Product 7 (Diya Set) -->
+            <div class="product-card">
+                <span class="badge-discount">Hot Item</span>
+                <img src="https://i.ibb.co/7NRbNnLx/Chat-GPT-Image-Jun-2-2025-09-29-04-AM.png" alt="Marble Diya Set">
+                <div>
+                    <h3 class="product-title">Marble Diya Set (6 Pcs)</h3>
+                    <p class="product-desc" id="desc-c2">Luxury set of 6 carved marble diyas for royal home decor and festive lighting. Each diya is intricately carved and measures exactly 2.5X2.5X0.75 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c2', this)">See More</span>
+
+                    <div class="price-wrap">
+                        <span class="price-current">₹899</span>
+                        <span class="price-original">₹1,599</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Diya Set (6 Pcs)')">Buy Now</button>
+            </div>
         </div>
     </section>
 
@@ -899,7 +1002,6 @@
                 Complete Your Order
             </h3>
 
-            <!-- Payment UPI Box -->
             <div class="payment-box">
                 <h4 style="color: var(--primary); margin-bottom: 5px;">Payment Details (UPI)</h4>
                 <div class="upi-badge">UPI ID: 9636567813@upi</div>
@@ -999,15 +1101,31 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // Hero Slider Logic (Auto change every 5 seconds)
+        // Hero Slider Logic (Auto change + Pause on Hover)
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
+        let slideInterval;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function startSlider() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopSlider() {
+            clearInterval(slideInterval);
+        }
+
         if(slides.length > 0) {
-            setInterval(() => {
-                slides[currentSlide].classList.remove('active');
-                currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.add('active');
-            }, 5000);
+            startSlider();
+            const sliderContainer = document.querySelector('.hero-slider');
+            // Hover pe roko, hatane pe wapas shuru karo
+            sliderContainer.addEventListener('mouseenter', stopSlider);
+            sliderContainer.addEventListener('mouseleave', startSlider);
         }
 
         // 'See More' Description Toggle Logic
