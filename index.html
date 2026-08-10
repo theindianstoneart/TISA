@@ -337,13 +337,14 @@
             font-size: 0.95rem;
         }
 
-        /* Product Grids */
+        /* General Product Grid */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
+        /* Masterpiece Grid */
         .masterpiece-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -628,7 +629,7 @@
             font-weight: 600;
         }
 
-        /* Google Icon colors manually applied */
+        /* Google Icon colors */
         .g-icon {
             display: inline-block;
             font-weight: bold;
@@ -993,6 +994,7 @@
 
         <div class="masterpiece-grid">
             
+            <!-- Product: Hourglass Lamp -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
                 <div class="card-carousel" id="carousel-lamp-m">
@@ -1016,6 +1018,7 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Hourglass Shape Marble Lamp')">Buy Now</button>
             </div>
             
+            <!-- Product: Pooja Thali -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
                 <div class="card-carousel" id="carousel-thali-m">
@@ -1037,6 +1040,7 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Buy Now</button>
             </div>
 
+            <!-- Product: Decorative Tray -->
             <div class="product-card">
                 <span class="badge-discount">Signature Edition</span>
                 <div class="card-carousel" id="carousel-tray-m">
@@ -1058,6 +1062,7 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Decorative Tray')">Buy Now</button>
             </div>
 
+            <!-- Product: Verdant Emerald Leaf Tray -->
             <div class="product-card">
                 <span class="badge-discount">Signature Edition</span>
                 <div class="card-carousel" id="carousel-green-m">
@@ -1079,6 +1084,28 @@
                     </div>
                 </div>
                 <button class="btn-buy-card" onclick="openOrderModal('Verdant Emerald Leaf Marble Tray')">Buy Now</button>
+            </div>
+
+            <!-- NEW Product: Lotus Plate -->
+            <div class="product-card">
+                <span class="badge-discount">New Arrival</span>
+                <div class="card-carousel" id="carousel-lotus-m">
+                    <img src="https://i.ibb.co/qf2YwBk/image-6.png" class="card-slide active" alt="Lotus Plate">
+                    <img src="https://i.ibb.co/Cs1fZwDg/image-5.png" class="card-slide" alt="Lotus Plate">
+                    <button class="card-prev" onclick="prevCardSlide('carousel-lotus-m', event)">&#10094;</button>
+                    <button class="card-next" onclick="nextCardSlide('carousel-lotus-m', event)">&#10095;</button>
+                </div>
+                <div>
+                    <h3 class="product-title">Marble Lotus Plate</h3>
+                    <p class="product-desc" id="desc-m-lotus">Exquisite hand-carved marble lotus plate. Perfect for festive decorations, pooja offerings, or as a luxury centerpiece for your home. Dimensions: 9X9X1.75 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-m-lotus', this)">See More</span>
+                    
+                    <div class="price-wrap">
+                        <span class="price-current">₹1,249</span>
+                        <span class="price-original">₹2,199</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Lotus Plate')">Buy Now</button>
             </div>
             
         </div>
@@ -1136,6 +1163,28 @@
                     </div>
                 </div>
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Buy Now</button>
+            </div>
+
+            <!-- NEW Product: Lotus Plate -->
+            <div class="product-card">
+                <span class="badge-discount">New Arrival</span>
+                <div class="card-carousel" id="carousel-lotus-c">
+                    <img src="https://i.ibb.co/qf2YwBk/image-6.png" class="card-slide active" alt="Lotus Plate">
+                    <img src="https://i.ibb.co/Cs1fZwDg/image-5.png" class="card-slide" alt="Lotus Plate">
+                    <button class="card-prev" onclick="prevCardSlide('carousel-lotus-c', event)">&#10094;</button>
+                    <button class="card-next" onclick="nextCardSlide('carousel-lotus-c', event)">&#10095;</button>
+                </div>
+                <div>
+                    <h3 class="product-title">Marble Lotus Plate</h3>
+                    <p class="product-desc" id="desc-c-lotus">Exquisite hand-carved marble lotus plate. Perfect for festive decorations, pooja offerings, or as a luxury centerpiece for your home. Dimensions: 9X9X1.75 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c-lotus', this)">See More</span>
+                    
+                    <div class="price-wrap">
+                        <span class="price-current">₹1,249</span>
+                        <span class="price-original">₹2,199</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Lotus Plate')">Buy Now</button>
             </div>
 
             <div class="product-card">
