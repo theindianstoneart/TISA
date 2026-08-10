@@ -337,14 +337,13 @@
             font-size: 0.95rem;
         }
 
-        /* General Product Grid */
+        /* Product Grids */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
-        /* Masterpiece Grid */
         .masterpiece-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -463,7 +462,6 @@
             background: rgba(0, 0, 0, 0.6);
         }
 
-        /* Simple Img for cards without carousel */
         .product-card > img {
             width: 100%;
             height: 240px;
@@ -558,6 +556,89 @@
         .btn-buy-card:hover {
             background-color: var(--accent);
         }
+
+        /* -------------------------------------
+           Google Reviews (Patron Impressions) 
+        ----------------------------------------*/
+        .testimonial-section {
+            background-color: var(--card-bg);
+            padding: 80px 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .testimonial-grid {
+            max-width: 1250px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .testi-card {
+            background-color: var(--bg-body);
+            padding: 35px 30px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .testi-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            border-color: var(--accent);
+        }
+
+        .testi-stars {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .testi-text {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-style: italic;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        .testi-author {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .testi-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Google Icon colors manually applied */
+        .g-icon {
+            display: inline-block;
+            font-weight: bold;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+        }
+        .g-blue { color: #4285F4; }
+        .g-red { color: #EA4335; }
+        .g-yellow { color: #FBBC05; }
+        .g-green { color: #34A853; }
 
         /* Modal Overlay */
         .modal-overlay {
@@ -685,7 +766,6 @@
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
             padding: 40px 20px;
-            margin-top: 60px;
         }
 
         .trust-grid {
@@ -879,7 +959,7 @@
             </div>
         </div>
         
-        <!-- Slide 5 (Emerald Leaf Tray - REPLACED KALASH) -->
+        <!-- Slide 5 (Emerald Leaf Tray) -->
         <div class="slide">
             <div class="slide-inner">
                 <div class="slide-text">
@@ -913,7 +993,6 @@
 
         <div class="masterpiece-grid">
             
-            <!-- Product: Hourglass Lamp -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
                 <div class="card-carousel" id="carousel-lamp-m">
@@ -937,7 +1016,6 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Hourglass Shape Marble Lamp')">Buy Now</button>
             </div>
             
-            <!-- Product: Pooja Thali -->
             <div class="product-card">
                 <span class="badge-discount">Hot Item</span>
                 <div class="card-carousel" id="carousel-thali-m">
@@ -959,7 +1037,6 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Buy Now</button>
             </div>
 
-            <!-- Product: Decorative Tray -->
             <div class="product-card">
                 <span class="badge-discount">Signature Edition</span>
                 <div class="card-carousel" id="carousel-tray-m">
@@ -981,7 +1058,6 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Decorative Tray')">Buy Now</button>
             </div>
 
-            <!-- Product: NEW Verdant Emerald Leaf Tray -->
             <div class="product-card">
                 <span class="badge-discount">Signature Edition</span>
                 <div class="card-carousel" id="carousel-green-m">
@@ -1062,7 +1138,6 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Pooja Thali 6 inch')">Buy Now</button>
             </div>
 
-            <!-- NEW Verdant Emerald Leaf Tray -->
             <div class="product-card">
                 <span class="badge-discount">Signature Edition</span>
                 <div class="card-carousel" id="carousel-green-c">
@@ -1186,6 +1261,49 @@
                 </div>
                 <button class="btn-buy-card" onclick="openOrderModal('Marble Diya Set (6 Pcs)')">Buy Now</button>
             </div>
+        </div>
+    </section>
+
+    <!-- NEW: Patron Impressions (Google Reviews) Section -->
+    <section class="testimonial-section">
+        <div class="section-header">
+            <h2 class="section-title">Patron Impressions</h2>
+            <div class="section-divider"></div>
+            <p class="section-desc">Words of appreciation from our esteemed clients.</p>
+        </div>
+
+        <div class="testimonial-grid">
+            
+            <!-- Review 1 -->
+            <div class="testi-card">
+                <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testi-text">"Absolutely mesmerized by the craftsmanship! I ordered the marble pooja thali and it looks incredibly royal. The detailing on the stone is so fine, it feels like a true piece of Rajasthan's heritage in my home."</p>
+                <h4 class="testi-author">Ananya Sharma</h4>
+                <div class="testi-badge">
+                    <span class="g-icon"><span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span></span> Verified Review
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="testi-card">
+                <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testi-text">"The Hourglass Marble Lamp changed the entire vibe of my living room. The delivery was fast and the packaging was completely shockproof. Premium quality and highly professional service by The Indian Stone Art team."</p>
+                <h4 class="testi-author">Rahul Verma</h4>
+                <div class="testi-badge">
+                    <span class="g-icon"><span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span></span> Verified Review
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="testi-card">
+                <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testi-text">"I gifted the Emerald Leaf Marble Tray to a close friend for a housewarming party, and they were in awe. The Kesariya Ji green marble looks stunning in person. Authentic stone and brilliant finishing!"</p>
+                <h4 class="testi-author">Priya Kapoor</h4>
+                <div class="testi-badge">
+                    <span class="g-icon"><span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span></span> Verified Review
+                </div>
+            </div>
+
         </div>
     </section>
 
