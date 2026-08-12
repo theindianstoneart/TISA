@@ -1279,6 +1279,22 @@
                 <button class="btn-buy-card" onclick="openOrderModal('Square Leaf Marble Platter')">Buy Now</button>
             </div>
 
+            <!-- NEW Product: Marble Vase -->
+            <div class="product-card">
+                <span class="badge-discount">New Arrival</span>
+                <img src="https://i.ibb.co/HDm9RHHW/1786381385382.png" alt="Marble Vase">
+                <div>
+                    <h3 class="product-title">Marble Vase</h3>
+                    <p class="product-desc" id="desc-c-vase">An elegant handcrafted marble vase featuring a tall, slender design. Perfect for displaying fresh flowers or as a standalone luxury decor piece. Dimensions: 4X4X12 inches.</p>
+                    <span class="see-more-btn" onclick="toggleDesc('desc-c-vase', this)">See More</span>
+
+                    <div class="price-wrap">
+                        <span class="price-current">₹1,599</span>
+                    </div>
+                </div>
+                <button class="btn-buy-card" onclick="openOrderModal('Marble Vase')">Buy Now</button>
+            </div>
+
             <div class="product-card">
                 <span class="badge-discount">New Arrival</span>
                 <img src="https://i.ibb.co/xtHCqZ39/1000244483.png" alt="Marble Holy Kalash">
@@ -1450,7 +1466,7 @@
 
             <div class="payment-box">
                 <h4 style="color: var(--primary); margin-bottom: 5px;">Payment Details (UPI)</h4>
-                <div class="upi-badge">UPI ID: 9636567813@upi</div>
+                <div class="upi-badge">UPI ID: 9636567813@ybl</div>
             </div>
 
             <form id="orderForm" onsubmit="handleOrderSubmit(event)">
@@ -1484,6 +1500,8 @@
                     <label for="customerAddress">Shipping Address</label>
                     <textarea id="customerAddress" name="Shipping Address" rows="3" placeholder="Full postal address with PIN code" required></textarea>
                 </div>
+                
+                <p style="font-size: 0.85rem; color: var(--primary); margin-top: 10px; margin-bottom: 15px; font-weight: 600;">* Note: Shipping charges will be extra based on your location.</p>
 
                 <button type="submit" class="btn-submit-order" id="submitBtn">
                     Submit Order & View Policy
@@ -1500,8 +1518,8 @@
             
             <div style="background-color: var(--bg-body); padding: 20px; border-radius: 6px; text-align: left; border: 1px solid var(--border-color); margin-bottom: 20px;">
                 <p class="policy-content" style="font-size: 0.95rem; color: var(--text-dark); margin-bottom: 15px; line-height: 1.6;">
-                    <strong style="color: var(--primary);">📦 Dispatch Timeline:</strong><br>
-                    Orders are typically dispatched within <strong>24 to 48 hours</strong>. Please note that our dispatch operations are closed on Sundays and major public holidays.
+                    <strong style="color: var(--primary);">📦 Dispatch & Shipping:</strong><br>
+                    Orders are typically dispatched within <strong>24 to 48 hours</strong>. Please note that our dispatch operations are closed on Sundays and major public holidays. <strong>Shipping charges will be extra</strong> and calculated based on your delivery location.
                 </p>
                 <p class="policy-content" style="font-size: 0.95rem; color: var(--text-dark); line-height: 1.6;">
                     <strong style="color: var(--primary);">🔄 Cancellation & Refund Policy:</strong><br>
@@ -1709,6 +1727,7 @@
                 "*Phone:* " + encodeURIComponent(phone) + "%0A" +
                 "*Payment Ref/UTR ID:* " + encodeURIComponent(paymentRef) + "%0A" +
                 "*Shipping Address:* " + encodeURIComponent(address) + "%0A%0A" +
+                "⚠️ *Note:* Shipping charges will be extra based on your location.%0A%0A" +
                 "----------------------------------%0A" +
                 "ℹ️ *Status:* I have read and accepted the dispatch & cancellation policy on the website.";
 
